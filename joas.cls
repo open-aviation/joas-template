@@ -11,32 +11,34 @@
 % Style the sectioning elements:
 \renewcommand\section{\@startsection {section}{1}{\z@}%
   {-3.5ex \@plus -1ex \@minus -.2ex}%
-  {0.2ex \@plus.2ex}%
+  {2ex \@plus .5ex \@minus -.5ex}%
   {\sffamily\bfseries}}
 \renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
   {-3.25ex\@plus -1ex \@minus -.2ex}%
-  {0.2ex \@plus .2ex}%
-  {\sffamily\bfseries\itshape}}
+  {1ex \@plus .2ex \@minus .2ex}%
+  {\sffamily\bfseries}}
 \renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
   {-3.25ex\@plus -1ex \@minus -.2ex}%
-  {0.2ex \@plus .2ex}%
-  {\sffamily\itshape}} 
+  {0.5ex \@plus .2ex}%
+  {\sffamily}} 
 \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
   {3.25ex \@plus1ex \@minus.2ex}%
   {-1em}%
-  {\sffamily}}
+  {\bfseries}}
 \renewcommand\subparagraph{\@startsection{subparagraph}{5}{\parindent}%
   {3.25ex \@plus1ex \@minus .2ex}%
   {-1em}%
-  {\sffamily}}
+  {\bfseries}}
 \def\@hangfrom#1{\setbox\@tempboxa\hbox{{#1}}%
   \hangindent 0pt%\wd\@tempboxa
   \noindent\box\@tempboxa}
-% Approximations of commercial fonts:
-\RequirePackage[scaled=0.97]{fbb}
 \RequirePackage{parskip}
+% Approximations of commercial fonts:
+\RequirePackage{parskip}
+\RequirePackage{charter}
 \RequirePackage[semibold]{sourcesanspro}
 \RequirePackage{sansmath}
+\RequirePackage[scaled=0.95]{inconsolata}
 \RequirePackage[italic,eulergreek]{mathastext}
 \RequirePackage{lastpage} % For getting the last page in the first page header
 \RequirePackage{enumitem} % For list styling
@@ -195,7 +197,7 @@
    {\csname the#1\endcsname\quad}%  default
    {\csname #1@cntformat\endcsname}% individual control
    }
-   \def\section@cntformat{\thesection.\quad}
+   \def\section@cntformat{\thesection.\hspace{1ex}}
 \renewcommand\appendix{\par
   \setcounter{section}{0}
   \setcounter{subsection}{0}
@@ -473,9 +475,9 @@
 \newlength\cup@space@post@title
 \setlength\cup@space@post@title{1em}
 \newlength\cup@space@post@author
-\setlength\cup@space@post@author{0.5em}
+\setlength\cup@space@post@author{0.7em}
 \newlength\cup@space@post@address
-\setlength\cup@space@post@address{0pt}
+\setlength\cup@space@post@address{0.2em}
 \newlength\cup@space@post@email
 \setlength\cup@space@post@email{1em}
 \newlength\cup@space@post@date
@@ -487,7 +489,7 @@
 \newcommand*\affilsize{\footnotesize}
 \newcommand*\authorsize{\normalsize}
 \newcommand*\emailsize{\footnotesize}
-\newcommand*\titlesize{\LARGE}
+\newcommand*\titlesize{\Large}
 \newcommand*\datesize{\footnotesize}
 \newcommand*\firstheadsize{\scriptsize}
 \newcommand*\affilfont{\footnotesize}
@@ -502,8 +504,8 @@
 \newcommand*\volumefont{\bfseries}
 \newcommand*\cup@etal{\emph{et al.}}
 \def\ps@plain{
-  \renewcommand{\@oddhead}{\hfill{\journalnamefont\cup@journal@name}\qquad\thepage}%
-  \renewcommand{\@evenhead}{\thepage\qquad\@author@i\space\cup@etal\hfill}%
+  \renewcommand{\@oddhead}{\hfill{\journalnamefont\footnotesize\cup@journal@name}\qquad\normalsize\thepage}%
+  \renewcommand{\@evenhead}{\thepage\qquad\footnotesize\@author@i\space\cup@etal\hfill}%
   \renewcommand{\@evenfoot}{}%
   \renewcommand{\@oddfoot}{\@evenfoot}%
 }
@@ -566,7 +568,7 @@
         {%
           \authorsize
           \authorfont
-          \frenchspacing
+          %\frenchspacing
           \cup@author@list
           \par
         }%
@@ -626,7 +628,7 @@
   \fi
 }
 \newcommand*\cup@contact@details{%
-  { \emailsymbol{}Corresponding author. Email: \cup@email@list}%
+  { \emailsymbol{}Corresponding author: \cup@email@list}%
   \cup@number@list
 }
 \let\@thanks\@empty
