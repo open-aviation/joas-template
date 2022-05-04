@@ -1,0 +1,86 @@
+\documentclass[
+  manuscript=Re/Science,  %% Options are article (default), re/science, data, software
+  year=20xx,
+  volume=x,
+]{joas}
+
+
+\usepackage[english]{babel}
+\usepackage{blindtext}
+
+% Packages for the example
+\usepackage{booktabs,microtype,siunitx}
+\sisetup{detect-all,separate-uncertainty = true}
+
+\addbibresource{reference.bib}
+
+\title{Creating an open community to support reusability and reproducibility aviation science}
+
+\author{Junzi Sun}
+\affiliation{Faculty of Aerospace Engineering, Delft University of Technology, Netherlands}
+\email{j.sun-1@tudelft.nl}
+
+\author{Xavier Olive}
+\affiliation{Office National d'Etudes et de Recherches Aérospatiales, France}
+\alsoaffiliation{Joint first authors}
+
+\author{Martin Strohmeier}
+\affiliation{OpenSky Network, Switzerland}
+\affiliation{University of Oxford, UK}
+
+%\handlingeditor{Excellent E Editor}
+
+\doi{10.74800/joas.x.xxxx}
+
+%\received {29 July 2020}
+%\revised  {26 March 2021}
+%\accepted {25 May 2021}
+%\published{13 August 2021}
+
+\keywords{Research ethics; measurement; transparency; fieldwork; political violence} %% first word caps
+% \jel{Q11; Q12; D81; M31}
+% \msc{Q14; Q18; E21}
+% \abbreviations{
+%     BDHS: Bangladesh Demographic and Health Survey, 
+%     IDA: Fe-deficiency anaemia, 
+%     IFA: Fe-folic acid, 
+%     MNP: multiple micronutrient powder, 
+%     VAD: vitamin A deficiency
+% }
+
+\begin{document}
+
+\begin{abstract}
+  \blindtext
+\end{abstract}
+
+\section{Introduction}
+
+\Blindtext
+
+Some example open open-source research data \citep{schafer2014bringing} and tools \citep{olive2019traffic,sun2020openap}. 
+
+
+\section{Conclusion}
+
+\Blindtext
+
+
+
+\begin{acknowledgement}
+\blindtext
+\end{acknowledgement}
+
+% we uses footnotes, not endnotes. \endnote in this template will behave like \footnote; and \printendnotes will not output anything.
+
+\printbibliography
+
+\appendix
+
+\section{Supplementary figures}
+\blindtext
+
+\section{Supplementary data tables}
+\blindtext
+
+\end{document}
