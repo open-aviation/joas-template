@@ -544,11 +544,9 @@
 }
 \pagestyle{plain}
 \newcommand*\cup@copyright@notice{\scriptsize%
-  \textcopyright\ Cambridge University Press \cup@year. 
+  \textcopyright\ TU Delft Open Publishing \cup@year. 
   This is an Open Access article, distributed under the terms of the 
-  Creative Commons Attribution licence (\url{http://creativecommons.org/licenses/by/4.0/}), 
-  which permits unrestricted re-use, distribution, and reproduction in any medium, 
-  provided the original work is properly cited.
+  Creative Commons Attribution-NonCommercial-ShareAlike licence (\url{https://creativecommons.org/licenses/by-nc-sa/4.0/})
 }
 \def\@maketitle{%
   \setlength\parindent{\z@}
