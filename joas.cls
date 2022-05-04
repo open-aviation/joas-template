@@ -34,7 +34,7 @@
   \noindent\box\@tempboxa}
 % Approximations of commercial fonts:
 \RequirePackage[scaled=0.97]{fbb}
-\usepackage{parskip}
+\RequirePackage{parskip}
 \RequirePackage[semibold]{sourcesanspro}
 \RequirePackage{sansmath}
 \RequirePackage[italic,eulergreek]{mathastext}
@@ -63,8 +63,6 @@
   }%
 }
 \newif\ifcup@abbreviations
-\newif\ifcup@jel
-\newif\ifcup@msc
 \newif\ifcup@dates
 \newif\ifcup@copyright
 \newif\ifcup@articletitle
@@ -75,12 +73,6 @@
 \newif\ifcup@super
 \define@key{cup}{abbreviations}[true]{%
   \cup@keyval@bool{abbreviations}{#1}%
-}
-\define@key{cup}{jel}[true]{%
-  \cup@keyval@bool{jel}{#1}%
-}
-\define@key{cup}{msc}[true]{%
-  \cup@keyval@bool{msc}{#1}%
 }
 \define@key{cup}{suppmat}[true]{%
   \cup@keyval@bool{suppmat}{#1}%
@@ -133,21 +125,17 @@
 \define@key{cup}{usetitle}[true]{%
   \cup@keyval@bool{articletitle}{#1}%
 }
-\newcommand*\cup@journal{jcupat}
+\newcommand*\cup@journal{joas}
 \newcommand*\cup@doi{\cup@warning{No DOI provided}}
-\newcommand*\cup@layout{traditional}
-\newcommand*\cup@manuscript{article}
+\newcommand*\cup@manuscript{rescience}
 \newcommand*\cup@year{\cup@warning{No year provided}}
 \newcommand*\cup@vol{\cup@warning{No volume provided}}
 \newcommand*\cup@maxauthors{15}
 \define@key{cup}{journal}{%
   \def\cup@journal{#1}%
 }
-\define@key{cup}{layout}{%
-  \def\cup@layout{#1}%
-}
 \define@key{cup}{manuscript}{%
-  \AtBeginDocument{\def\cup@manuscript{#1}}%
+  \def\cup@manuscript{#1}%
 }
 \define@key{cup}{year}{%
   \def\cup@year{#1}%
@@ -156,22 +144,21 @@
   \def\cup@vol{#1}%
 }
 \ProcessOptionsX*<cup>
-\newcommand*\cup@manuscript@communication{communication}
-\newcommand*\cup@manuscript@letter{letter}
-\newcommand*\cup@manuscript@note{note}
-\newcommand*\cup@manuscript@review{review}
-\newcommand*\cup@manuscript@suppinfo{suppinfo}
+\newcommand*\cup@manuscript@article{article}
+\newcommand*\cup@manuscript@rescience{rescience}
+\newcommand*\cup@manuscript@data{data}
+\newcommand*\cup@manuscript@software{software}
+
 \setkeys{cup}{
   articletitle,
   super,
   dates,
   copyright,
   abbreviations,
-  jel,
-  msc,
   keywords,
 }
 \RequirePackage{geometry}
+\RequirePackage{csquotes}  
 \RequirePackage{changepage}
 \RequirePackage{stringstrings}
 \RequirePackage[absolute]{textpos}
@@ -214,7 +201,14 @@
   \setcounter{subsection}{0}
   \gdef\thesection{Appendix \@arabic\c@section}
 }
-\newmdenv[backgroundcolor=structure@color!15,hidealllines=true,leftmargin=3mm,rightmargin=3mm,innertopmargin=2mm,innerbottommargin=3mm,frametitle={\abstractfont\sffamily Abstract},frametitleaboveskip=3mm,frametitlebelowskip=0mm]{cup@abstract@box}
+\newmdenv[
+  backgroundcolor=structure@color!15,
+  hidealllines=true,
+  leftmargin=3mm,rightmargin=3mm,innertopmargin=2mm,innerbottommargin=3mm,
+  frametitle={\abstractfont\sffamily Abstract},
+  frametitleaboveskip=3mm,
+  frametitlebelowskip=0mm
+]{cup@abstract@box}
 \let\abstract@org\abstract
 \def\abstract{\cup@abstract@box\small}
 \def\endabstract{\endcup@abstract@box}
@@ -461,30 +455,6 @@
     \par
   \fi
 }
-\newcommand*\jel[1]{%
-  \gdef\@jel{#1}%
-}
-\newcommand*\@jel{}
-\@onlypreamble\jel
-\newcommand*\cup@jel@print{%
-  \ifx\@jel\@empty\else
-    {\noindent\bfseries JEL classification: }
-    \@jel
-    \par
-  \fi
-}
-\newcommand*\msc[1]{%
-  \gdef\@msc{#1}%
-}
-\newcommand*\@msc{}
-\@onlypreamble\msc
-\newcommand*\cup@msc@print{%
-  \ifx\@msc\@empty\else
-    {\noindent\bfseries MSC Codes: }
-    \@msc
-    \par
-  \fi
-}
 \newcommand*\cup@keywords@print{%
   \ifx\@keywords\@empty\else
     {\noindent\bfseries Keywords: }
@@ -494,10 +464,10 @@
 }
 \newcommand*\doi[1]{\gdef\cup@doi{#1}}
 \@onlypreamble\doi
-%\newcommand*\received[1] {\gdef\cup@recvd{#1}}
-%\newcommand*\revised[1]  {\gdef\cup@revd{#1}}
-%\newcommand*\accepted[1] {\gdef\cup@accptd{#1}}
-%\newcommand*\published[1]{\gdef\cup@publd{#1}}
+\newcommand*\received[1] {\gdef\cup@recvd{#1}}
+\newcommand*\revised[1]  {\gdef\cup@revd{#1}}
+\newcommand*\accepted[1] {\gdef\cup@accptd{#1}}
+\newcommand*\published[1]{\gdef\cup@publd{#1}}
 \newlength\cup@space@pre@title
 \setlength\cup@space@pre@title{1em}
 \newlength\cup@space@post@title
@@ -507,7 +477,7 @@
 \newlength\cup@space@post@address
 \setlength\cup@space@post@address{0pt}
 \newlength\cup@space@post@email
-\setlength\cup@space@post@email{1.5em}
+\setlength\cup@space@post@email{1em}
 \newlength\cup@space@post@date
 \setlength\cup@space@post@date{0.5em}
 \newlength\cup@space@inter@extra
@@ -543,6 +513,29 @@
   This is an Open Access article, distributed under the terms of the 
   Creative Commons Attribution-NonCommercial-ShareAlike licence (\url{https://creativecommons.org/licenses/by-nc-sa/4.0/})
 }
+
+\newcommand*\cup@type@list{article,rescience,data,software}
+\newcommand*\cup@type@default{article}
+\newcommand*\cup@type@check{%
+  \@tempswafalse
+  \@for\@tempa:=\cup@type@list\do{%
+    \ifx\@tempa\cup@manuscript
+      \expandafter\@tempswatrue
+    \fi
+  }%
+  \if@tempswa\else
+    \cup@warning{%
+      Invalid manuscript type \cup@manuscript:\MessageBreak
+      changed to default type \cup@type@default
+    }%
+    \let\cup@manuscript\cup@type@default
+  \fi
+}
+
+
+\cup@type@check
+
+
 \def\@maketitle{%
   \setlength\parindent{\z@}
   \setlength{\parskip}{1pt}
@@ -597,10 +590,10 @@
         {%
           \datesize
           \datefont
-          %\ifcup@dates
-           % (Received \cup@recvd; revised \cup@revd; accepted \cup@accptd; first published online \cup@publd)
-            %\vspace*{\cup@space@post@date}%
-          %\fi
+          \ifcup@dates
+           (Received \cup@recvd; revised \cup@revd; accepted \cup@accptd; first published online \cup@publd)
+            \vspace*{\cup@space@post@date}%
+          \fi
           \ifcup@copyright
             \bgroup\let\thefootnote\relax
             \footnote{\cup@copyright@notice}
@@ -981,14 +974,6 @@
     \cup@keywords@print
     \par\vspace*{\cup@space@inter@extra}
   \fi
-  \ifcup@jel
-    \cup@jel@print
-    \par\vspace*{\cup@space@inter@extra}
-  \fi
-  \ifcup@msc
-    \cup@msc@print
-    \par\vspace*{\cup@space@inter@extra}
-  \fi
   \ifcup@abbreviations
     \cup@abbreviations@print
     \par\vspace*{\cup@space@inter@extra}
@@ -1007,9 +992,6 @@
 \floatname{chart}{Chart}
 \newfloat{graph}{htbp}{loh}
 \floatname{graph}{Graph}
-%\newcommand*\schemename{Scheme}
-%\newcommand*\chartname{Chart}
-%\newcommand*\graphname{Graph}
 \floatplacement{table}{htbp}
 \floatplacement{figure}{htbp}
 \floatstyle{plaintop}
@@ -1056,7 +1038,7 @@
  \if@noskipsec \leavevmode \fi
  \par \@tempskipa #4\relax
  \@afterindenttrue
- \ifdim \@tempskipa <\z@ \@tempskipa -\@tempskipa \@afterindentfalse\fi
+ \ifdim \@tempskipa <\z@ \@tempskipa - 0.4\@tempskipa \@afterindentfalse\fi
  \if@nobreak \everypar{}\else
      \addpenalty\@secpenalty\addvspace\@tempskipa\fi
  \@ifstar{\@dblarg{\@sect{#1}{\@m}{#3}{#4}{#5}{#6}}}%
@@ -1067,7 +1049,7 @@
   \if@noskipsec \leavevmode \fi
   \par \@tempskipa #4\relax
   \@afterindenttrue
- \ifdim \@tempskipa <\z@ \@tempskipa -\@tempskipa \@afterindentfalse\fi
+ \ifdim \@tempskipa <\z@ \@tempskipa - 0.4\@tempskipa \@afterindentfalse\fi
  \if@nobreak \everypar{}\else
      \addpenalty\@secpenalty\addvspace\@tempskipa\fi
   \@ifstar{\@ssect{#3}{#4}{#5}{#6}}
@@ -1175,23 +1157,8 @@
 \newcommand\cup@collect@body[1]{%
   \global\cup@collect@toks\expandafter{\the\cup@collect@toks#1}%
 }
-\newcommand*\cup@type@list{article,communication,suppinfo}
-\newcommand*\cup@type@default{article}
-\newcommand*\cup@type@check{%
-  \@tempswafalse
-  \@for\@tempa:=\cup@type@list\do{%
-    \ifx\@tempa\cup@manuscript
-      \expandafter\@tempswatrue
-    \fi
-  }%
-  \if@tempswa\else
-    \cup@warning{%
-      Invalid manuscript type \cup@manuscript:\MessageBreak
-      changed to default type \cup@type@default
-    }%
-    \let\cup@manuscript\cup@type@default
-  \fi
-}
+
+
 \newcommand*\cup@setkeys{\setkeys{cup}}
 \let\cup@killsecs\SectionsOff
 \newcommand*\cup@validtype[2][article]{%
@@ -1202,163 +1169,7 @@
 \let\cup@par\par
 \let\CUPTWOCOL\relax
 
-%%%% CUSTOMISATIONS FOR LARGE LAYOUT
-\newcommand*\cup@layout@large{%
-  \newlength{\cup@sidebar@width}
-  \newlength{\cup@real@lmargin}
-  \setlength{\cup@sidebar@width}{5cm}
-  \setlength{\cup@real@lmargin}{1.5cm}
-  \geometry{paperwidth=210mm,paperheight=280mm,
-      left=7cm,top=2.3cm,bottom=1.7cm,right=1.4cm,
-      columnsep=2em,headsep=0.8cm
-      }
-  \def\CUPTWOCOL{%
-      \let\CUPTWOCOL\relax%
-      {\unskip\parfillskip 0pt\par}%
-      \twocolumn\changetext{}{\dimexpr\Gm@lmargin-\cup@real@lmargin\relax}{}{-\dimexpr\Gm@lmargin-\cup@real@lmargin\relax}{}{}%
-      \noindent\ignorespaces%
-  }
-    \def\ps@plain{
-      \renewcommand{\@oddhead}{\sffamily{\journalnamefont\cup@journal@name}\hfill\thepage}%
-      \renewcommand{\@evenhead}{\sffamily\thepage\hfill\@author@i\space\cup@etal}%
-      \renewcommand{\@evenfoot}{}%
-      \renewcommand{\@oddfoot}{\@evenfoot}%
-    }
-  \pagestyle{plain}
-  \setcounter{secnumdepth}{0}
-  \def\sidebarfont{\sffamily}
-  \patchcmd{\cup@keywords@print}{Keywords: }{Keywords:\par}{}{}
-  \patchcmd{\cup@msc@print}{Codes: }{Codes:\par}{}{}
-  \patchcmd{\cup@jel@print}{classification: }{classification:\par}{}{}
-  \patchcmd{\cup@abbreviations@print}{Abbreviations: }{Abbreviations:\par}{}{}
-  \def\@maketitle{%
-      \vspace*{\dimexpr-\headsep-\headheight\relax}%
-      \setlength\parindent{\z@}
-      \ifnum\cup@author@cnt<\z@\relax
-        \cup@warning{No authors defined: At least one author is required}%
-      \fi
-      \def\titlefont{\sffamily\mdseries\color{structure@color}\raggedright}
-      \def\authorfont{\sffamily}
-      \def\affilfont{\sffamily}
-      \setlength{\cup@space@inter@extra}{1em}
-      \begin{textblock*}{\cup@sidebar@width}(\cup@real@lmargin,\dimexpr\Gm@tmargin-\headsep\relax)
-        \raggedright%
-        \sidebarfont
-        {%
-          \journalnamefont
-          \cup@journal@name
-          \par
-        }%
-        \vspace*{\cup@space@inter@extra}%
-        \textbf{www.cambridge.org}\par%
-        \vspace*{3\cup@space@inter@extra}%
-        {\large\bfseries\color{structure@color}\xmakefirstuc{\cup@manuscript}\par}%
-        \vspace*{\cup@space@inter@extra}%
-        {%
-          \datesize
-          \datefont
-          \ifcup@dates
-            Received \cup@recvd\\%
-            Revised \cup@revd\\%
-            Accepted \cup@accptd\\%
-            First published online \cup@publd%
-            \par\vspace*{\cup@space@inter@extra}%
-          \fi
-          \cup@abstract@extras\par
-          \gdef\cup@abstract@extras{}
-        }%
-        {%
-          \emailsize
-          \emailfont
-          \ifcup@email
-            \patchcmd{\cup@contact@details}{Corresponding author}{Author for correspondence}{}{}
-            \expandafter\cup@contact@details
-            \par
-            \vspace*{\cup@space@post@email}%
-          \fi
-        }%
-        % \vspace*{\cup@space@inter@extra}%        
-        \end{textblock*}
-        % }%
-        \ifcup@copyright
-          \begin{textblock*}{\cup@sidebar@width}[0,1](\cup@real@lmargin,\dimexpr\paperheight-\Gm@bmargin\relax)
-            \raggedright\sidebarfont
-            \cup@copyright@notice\par
-            \vspace*{2\baselineskip}
-            \includegraphics[width=\linewidth]{joas-logo}
-          \end{textblock*}
-        \fi
-        {%
-          \titlefont
-          \titlesize
-          \let\@fnsymbol\cup@author@fnsymbol
-          \let\footnote@org\footnote
-          \let\footnote\cup@title@footnote
-          \cup@maketitle@suppinfo \@title
-          \cup@title@footnote@check
-          \global\cup@footnote@cnt\c@footnote
-          \@maketitle@title@hook
-          \par
-        }%
-        \vspace*{\baselineskip}
-        {%
-          \hrule\vskip2pt
-          \authorsize
-          \authorfont
-          \frenchspacing
-          \cup@author@list
-          \par\vskip2pt
-          \hrule
-        }%
-        \vspace*{1.5\cup@space@post@author}%
-        {%
-          \affilsize
-          \affilfont
-          \cup@address@list
-          \par
-        }%
-    }%
-}
-\newcommand*\cup@layout@largetwo{%
-  \geometry{paperwidth=210mm,paperheight=280mm,
-      left=1.5cm,top=2.3cm,bottom=1.7cm,right=1.4cm,
-      columnsep=2em,headsep=0.8cm
-      }
-  \patchcmd{\@maketitle}{\firstheadsize}{\sffamily\firstheadsize}{}{}
-  \appto{\authorfont}{\sffamily}
-  \appto{\affilfont}{\sffamily}
-  \appto{\datesize}{\sffamily}
-  \appto{\emailfont}{\sffamily}
-  \patchcmd{\document}{\maketitle}{}{}{}
-  \RequirePackage{environ}
-  \let\oldabstract\abstract
-  \let\endoldabstract\endabstract
-  \RenewEnviron{abstract}{%
-    \twocolumn[%
-      \begin{@twocolumnfalse}
-        \maketitle%
-        \begin{oldabstract}%
-        \protecting{\BODY}%
-        \end{oldabstract}%
-      \end{@twocolumnfalse}]}
-  \def\ps@plain{
-      \renewcommand{\@oddhead}{\sffamily{\journalnamefont\cup@journal@name}\hfill\thepage}%
-      \renewcommand{\@evenhead}{\sffamily\thepage\hfill\@author@i\space\cup@etal}%
-      \renewcommand{\@evenfoot}{}%
-      \renewcommand{\@oddfoot}{\@evenfoot}%
-    }
-  \pagestyle{plain}
-}
-\newcommand*\cup@layout@medium{%
-  \geometry{paperwidth=174mm,paperheight=247mm,
-    top=2.3cm,bottom=1.4cm,left=1.7cm,right=1.7cm,
-    headsep=0.8cm}
-}
-\newcommand*\cup@layout@small{%
-  \geometry{paperwidth=152mm,paperheight=228mm,
-    top=2cm,bottom=1.5cm,left=1.7cm,right=1.7cm,
-    headsep=0.5cm}
-}
+
 \newcommand*\acksize{\normalsize}
 \newcommand*\suppsize{\normalsize}
 \newcommand*\patch@numeric@authors{%
@@ -1381,8 +1192,27 @@
 }
 
 \def\cup@journal@name{Journal of Open Aviation Science}
-\cup@layout@medium 
-\colorlet{structure@color}{NavyBlue!70!black}
+
+\geometry{
+  paperwidth=174mm, paperheight=247mm,
+  top=2.3cm, bottom=1.4cm, left=1.7cm, right=1.7cm, 
+  headsep=0.8cm
+}
+
+\colorlet{structure@color}{NavyBlue!60!black}
+
+\ifx \cup@manuscript \cup@manuscript@rescience
+  \colorlet{structure@color}{Brown!60!black}
+\fi
+
+\ifx \cup@manuscript \cup@manuscript@data
+  \colorlet{structure@color}{DarkSeaGreen!50!black}
+\fi
+
+\ifx \cup@manuscript \cup@manuscript@software
+  \colorlet{structure@color}{DarkOrchid!60!black}
+\fi
+
 \patch@numeric@authors
 \patchcmd{\@maketitle}
   {joas-logo}{joas-logo}{}{}
@@ -1396,34 +1226,12 @@
 \patchcmd{\trfiller}{structure@color}{black}{}{}
 \patchcmd{\thfiller}{structure@color}{black}{}{}
 
-% default citation style; can be modified in journal config or preamble
-\providecommand*\cup@reference@code{
-  \RequirePackage{csquotes}  
-  \RequirePackage[authordate,backend=biber,natbib]{biblatex-chicago}
-  \renewcommand*{\bibfont}{\small}
-}
-\cup@reference@code
-\cup@type@check
-\ifx\cup@manuscript\cup@manuscript@note
-  \SectionsOff
-\fi
-\ifx\cup@manuscript\cup@manuscript@review
-  \SectionsOn
-  \SectionNumbersOn
-\fi
-\ifx\cup@manuscript\cup@manuscript@suppinfo
-  \setkeys{cup}{maxauthors = 0}
-  \def\thepage{S-\arabic{page}}
-  \renewcommand*\thefigure{S\@arabic\c@figure}
-  \renewcommand*\thescheme{S\@arabic\c@scheme}
-  \renewcommand*\thetable{S\@arabic\c@table}
-  \AtBeginDocument
-    {%
-      \renewcommand*\citenumfont[1]{S#1}%
-      \renewcommand*\bibnumfmt[1]{(S#1)}%
-    }
-\fi
+\RequirePackage[authordate,natbib]{biblatex-chicago}
+\renewcommand*{\bibfont}{\small}
+
+
 \SectionNumbersOn
+
 %% 
 %% Based on the achemso class
 %% Originally developed by Mats Dahlgren

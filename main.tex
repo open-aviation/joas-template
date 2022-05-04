@@ -1,10 +1,8 @@
 \documentclass[
-  manuscript=Re/Science,  %% Options are article (default), re/science, data, software
+  manuscript=article,  %% Options are article (default), re/science, data, software
   year=20xx,
   volume=x,
-  layout=largetwo,
 ]{joas}
-
 
 \usepackage[english]{babel}
 \usepackage{blindtext}
@@ -27,7 +25,6 @@
 \alsoaffiliation{Office National d'Etudes et de Recherches Aérospatiales, France}
 
 \author{Martin Strohmeier}
-\affiliation{Joint first authors}
 \alsoaffiliation{OpenSky Network, Switzerland}
 \alsoaffiliation{University of Oxford, UK}
 
@@ -42,21 +39,17 @@
 
 \doi{10.74800/joas.x.xxxx}
 
-%\received {29 July 2020}
-%\revised  {26 March 2021}
-%\accepted {25 May 2021}
-%\published{13 August 2021}
+\received {1 April 2022}
+\revised  {1 May 2022}
+\accepted {10 May 2022}
+\published{20 May 2022}
 
 \keywords{Aviation; reproducibility; transparency; data; software; re-science} %% first word caps
-% \jel{Q11; Q12; D81; M31}
-% \msc{Q14; Q18; E21}
-% \abbreviations{
-%     BDHS: Bangladesh Demographic and Health Survey, 
-%     IDA: Fe-deficiency anaemia, 
-%     IFA: Fe-folic acid, 
-%     MNP: multiple micronutrient powder, 
-%     VAD: vitamin A deficiency
-% }
+
+\abbreviations{
+    ATM: Air Traffic Managment, 
+    ADS-B: Automatic Dependent Surveillance--Broadcast
+}
 
 \begin{document}
 
@@ -67,17 +60,60 @@
 \section{Introduction}
 \Blindtext
 
+
+
+
 \section{Method}
 
 \subsection{Method 1}
+
+\blindtext
+
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[width=0.6\textwidth]{joas-logo.pdf}
+  \caption{JOAS Logo}
+  \label{fig:logo}
+\end{figure}
+
+\blindtext
+
+\subsection{Method 2}
+
+\subsubsection{Method 2-1}
+
 \blindtext
 
 \begin{equation}
   E = m c^2
 \end{equation}
 
-\subsection{Method 2}
-\subsubsection{Method 2-1}
+\blindtext
+
+\begin{table}[H]
+  \centering
+  \small
+  \caption{Engine performance parameters}
+  \label{tb:eng_perf_params}
+  \begin{tabular}{lll}
+  \toprule
+  \textbf{Parameter} & \textbf{Notation} & \textbf{Remarks} \\
+  \midrule
+  name & - & engine common identifier \\
+  manufacture & - & -  \\
+  bpr & $\lambda$ & bypass ratio \\
+  pr & - & pressure ratio \\
+  max\_thrust & $T_0$ & maximum static thrust, sea level (unit: N) \\
+  fuel\_c3 & $C_\mathrm{ff3}$ & fuel flow coefficient, 3rd order term (unit: kg/s) \\
+  fuel\_c2 & $C_\mathrm{ff2}$ & fuel flow coefficient, 2nd order term (unit: kg/s) \\
+  fuel\_c1 & $C_\mathrm{ff1}$ & fuel flow coefficient, 1st order term (unit: kg/s) \\
+  cruise\_thrust & $T_\mathrm{cr}$ & thrust at the top of climb (unit: N) \\
+  cruise\_mach & $M_\mathrm{cr}$ & cruise Mach number for the thrust condition \\
+  cruise\_alt & $h_\mathrm{cr}$ & cruise Mach altitude for the thrust condition (unit: ft) \\
+  \bottomrule
+  \end{tabular}
+\end{table}
+
 \blindtext
 
 Some example open open-source research data \citep{schafer2014bringing} and tools \citep{olive2019traffic,sun2020openap}. 
