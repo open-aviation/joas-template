@@ -5,9 +5,9 @@
 %% ----------------------------------------------------------------
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{cup-journal}
-  [2021/07/27 v1.0 Submission to CUP journals]
-\LoadClass[10pt,letter,twoside]{article}
+\ProvidesClass{joas}
+  [2021/05/04 v1.0 Submission to JOAS]
+\LoadClass[10pt,a4paper,twoside]{article}
 % Style the sectioning elements:
 \renewcommand\section{\@startsection {section}{1}{\z@}%
   {-3.5ex \@plus -1ex \@minus -.2ex}%
@@ -34,6 +34,7 @@
   \noindent\box\@tempboxa}
 % Approximations of commercial fonts:
 \RequirePackage[scaled=0.97]{fbb}
+\usepackage{parskip}
 \RequirePackage[semibold]{sourcesanspro}
 \RequirePackage{sansmath}
 \RequirePackage[italic,eulergreek]{mathastext}
@@ -50,7 +51,7 @@
   \theendnotes
 }
 %%
-\newcommand*\cup@warning{\ClassWarning{cup-journal}}
+\newcommand*\cup@warning{\ClassWarning{joas}}
 \newcommand*\cup@ifundefined[1]{%
   \begingroup\expandafter\expandafter\expandafter\endgroup
   \expandafter\ifx\csname #1\endcsname\relax
@@ -255,13 +256,13 @@
 \@onlypreamble\author
 \def\and{%
   \cup@warning{%
-    \string\and\space not used by the cup-journal class: please see
+    \string\and\space not used by the joas class: please see
     the\MessageBreak package documentation for details%
   }%
 }
 \def\thanks{%
   \cup@warning{%
-    \string\thanks\space not used by the cup-journal class: please see
+    \string\thanks\space not used by the joas class: please see
     the\MessageBreak the package documentation for details%
   }%
 }
@@ -550,6 +551,7 @@
 }
 \def\@maketitle{%
   \setlength\parindent{\z@}
+  \setlength{\parskip}{1pt}
   \ifnum\cup@author@cnt<\z@\relax
     \cup@warning{No authors defined: At least one author is required}%
   \fi
@@ -1450,7 +1452,7 @@
 %% This work is "maintained" (as per LPPL maintenance status) by
 %%   Paul Gessler.
 %% 
-%% This work consists of the file cup-journal.cls.
+%% This work consists of the file joas.cls.
 %% 
 %%
-%% End of file `cup-journal.cls'.
+%% End of file `joas.cls'.
