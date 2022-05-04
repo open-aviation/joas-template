@@ -44,12 +44,6 @@
 \RequirePackage[online]{threeparttable} % For table notes
 \let\TPTnoteSettingsOrig\TPTnoteSettings
 \def\TPTnoteSettings{\TPTnoteSettingsOrig\scriptsize}
-\RequirePackage{endnotes}
-\newcommand*{\printendnotes}{%
-  \def\enoteformat{\rightskip=0pt \leftskip=0pt \parindent=0pt \makeenmark}
-  \def\makeenmark{\bgroup\bfseries\theenmark\enspace\egroup}
-  \theendnotes
-}
 %%
 \newcommand*\cup@warning{\ClassWarning{joas}}
 \newcommand*\cup@ifundefined[1]{%
@@ -1207,6 +1201,7 @@
 \newcommand*\cup@par{}
 \let\cup@par\par
 \let\CUPTWOCOL\relax
+
 %%%% CUSTOMISATIONS FOR LARGE LAYOUT
 \newcommand*\cup@layout@large{%
   \newlength{\cup@sidebar@width}
@@ -1356,12 +1351,12 @@
 }
 \newcommand*\cup@layout@medium{%
   \geometry{paperwidth=174mm,paperheight=247mm,
-    top=2.3cm,bottom=1.4cm,left=1.8cm,right=1.5cm,
+    top=2.3cm,bottom=1.4cm,left=1.7cm,right=1.7cm,
     headsep=0.8cm}
 }
 \newcommand*\cup@layout@small{%
   \geometry{paperwidth=152mm,paperheight=228mm,
-    top=2cm,bottom=1.5cm,left=1.7cm,right=1.5cm,
+    top=2cm,bottom=1.5cm,left=1.7cm,right=1.7cm,
     headsep=0.5cm}
 }
 \newcommand*\acksize{\normalsize}
