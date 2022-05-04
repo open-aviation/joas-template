@@ -34,7 +34,6 @@
   \noindent\box\@tempboxa}
 \RequirePackage{parskip}
 % Approximations of commercial fonts:
-\RequirePackage{parskip}
 \RequirePackage{charter}
 \RequirePackage[semibold]{sourcesanspro}
 \RequirePackage{sansmath}
@@ -546,7 +545,7 @@
   \fi
   \newpage\vspace*{\dimexpr-\headsep-\headheight\relax}
   \parbox[b]{\dimexpr\textwidth-20mm\relax}{%
-    \firstheadsize{\journalnamefont\cup@journal@name} 
+    \footnotesize{\journalnamefont\cup@journal@name} 
     (\cup@year), {\volumefont\cup@vol}, \thepage--\pageref{LastPage}
     \par doi:{\cup@doi}}\hfill\includegraphics[width=20mm]{joas-logo}\par
   \vspace*{\baselineskip}
@@ -974,7 +973,7 @@
   \extrasfont
   \ifcup@keywords
     \cup@keywords@print
-    \par\vspace*{\cup@space@inter@extra}
+    %\par\vspace*{\cup@space@inter@extra}
   \fi
   \ifcup@abbreviations
     \cup@abbreviations@print
