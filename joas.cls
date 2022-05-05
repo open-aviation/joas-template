@@ -34,11 +34,13 @@
   \noindent\box\@tempboxa}
 \RequirePackage{parskip}
 % Approximations of commercial fonts:
-\RequirePackage{charter}
+%\RequirePackage[T1]{fontenc}
+\RequirePackage[tt=false, type1=true]{libertine}
+\RequirePackage[libertine]{newtxmath}
 \RequirePackage[semibold]{sourcesanspro}
-\RequirePackage{sansmath}
 \RequirePackage[scaled=0.95]{inconsolata}
-\RequirePackage[italic,eulergreek]{mathastext}
+\RequirePackage[italic,eulergreek,defaultmathsizes]{mathastext}
+
 \RequirePackage{lastpage} % For getting the last page in the first page header
 \RequirePackage{enumitem} % For list styling
 \setlist{noitemsep,leftmargin=\parindent}
