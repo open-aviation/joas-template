@@ -1,18 +1,24 @@
 \documentclass[
-  manuscript=data,  %% Options are article (default), rescience, data, software
+  manuscript=data,  %% article (default), rescience, data, or software
+  layout=preprint,  %% preprint (for submission) or publish (for publisher only)
   year=20xx,
   volume=x,
 ]{joas}
 
+\doi{10.74800/joas.x.xxxx}
+
+\received {1 April 2022}
+\revised  {1 May 2022}
+\accepted {10 May 2022}
+\published{20 May 2022}
+
+
+% --- blew is the area for authors ---
+
 \usepackage[english]{babel}
 \usepackage{blindtext}
 
-% Packages for the example
-\usepackage{booktabs,microtype,siunitx}
-\sisetup{detect-all,separate-uncertainty = true}
-
-
-\addbibresource{reference.bib}
+\addbibresource{reference.bib} % specify the .bib file for references
 
 \title{Creating an open community to support reusable and reproducible aviation science}
 
@@ -39,16 +45,8 @@
 \affiliation{University of Syldavia}
 
 
-%\handlingeditor{Excellent E Editor}
-
-\doi{10.74800/joas.x.xxxx}
-
-\received {1 April 2022}
-\revised  {1 May 2022}
-\accepted {10 May 2022}
-\published{20 May 2022}
-
-\keywords{Aviation; reproducibility; transparency; data; software; re-science} %% first word caps
+%% first word caps
+\keywords{Aviation; reproducibility; transparency; data; software; re-science} 
 
 \abbreviations{
     ATM: Air Traffic Managment, 
@@ -90,7 +88,7 @@ Callsigns are nice in tt mode \texttt{AFR88HH} and $\rho = 1$ inline
   \label{fig:logo}
 \end{figure}
 
-\blindtext\footnote{This is how a footnote look like.}
+\blindtext\footnote{This is how a footnote works.}
 
 \subsection{Method 2}
 
@@ -150,7 +148,10 @@ Callsigns are nice in tt mode \texttt{AFR88HH} and $\rho = 1$ inline
 \section{Supplementary data tables}
 \blindtext
 
-\begin{suppinfo}
-Should need support when trying to reproduce this research, please contact Junzi.
-\end{suppinfo}
+% The following reproducibility statement is mandatory for all papers
+\begin{reproduce}
+Information on how to access supplementary data to reproduce this research, including access to open data set, source code for the research, source code for the figures, etc.
+\end{reproduce}
+
+
 \end{document}

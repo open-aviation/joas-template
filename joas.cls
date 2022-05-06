@@ -140,6 +140,7 @@
 \newcommand*\cup@year{\cup@warning{No year provided}}
 \newcommand*\cup@vol{\cup@warning{No volume provided}}
 \newcommand*\cup@maxauthors{15}
+\newcommand*\cup@layout{preprint}
 \define@key{cup}{journal}{%
   \def\cup@journal{#1}%
 }
@@ -152,11 +153,15 @@
 \define@key{cup}{volume}{%
   \def\cup@vol{#1}%
 }
+\define@key{cup}{layout}{%
+  \def\cup@layout{#1}%
+}
 \ProcessOptionsX*<cup>
 \newcommand*\cup@manuscript@article{article}
 \newcommand*\cup@manuscript@rescience{rescience}
 \newcommand*\cup@manuscript@data{data}
 \newcommand*\cup@manuscript@software{software}
+\newcommand*\cup@layout@preprint{preprint}
 
 \setkeys{cup}{
   articletitle,
@@ -555,7 +560,7 @@
           \let\@fnsymbol\cup@author@fnsymbol
           \let\footnote@org\footnote
           \let\footnote\cup@title@footnote
-          \cup@maketitle@suppinfo \@title
+          \cup@maketitle@reproduce \@title
           \cup@title@footnote@check
           \global\cup@footnote@cnt\c@footnote
           \@maketitle@title@hook
@@ -601,11 +606,7 @@
         }%
 }
 \newcommand*\@maketitle@title@hook{}
-\newcommand*\cup@maketitle@suppinfo{%
-  \ifx\cup@manuscript\cup@manuscript@suppinfo
-    Supporting Information:\\
-  \fi
-}
+\newcommand*\cup@maketitle@reproduce{}
 \newcommand*\cup@title@footnote[1]{%
   \footnotemark
   \g@addto@macro\@thanks{\footnotetext{#1}}%
@@ -1100,8 +1101,8 @@
 \newenvironment{acknowledgement}{%
   \cup@section*{\acknowledgementname}%
 }{}
-\newenvironment{suppinfo}{%
-  \cup@section*{\suppinfoname}%
+\newenvironment{reproduce}{%
+  \cup@section*{\reproducename}%
 }{}
 \newcommand*\acknowledgementname{Acknowledgement}
 \AtEndOfClass{%
@@ -1109,7 +1110,7 @@
     \cup@section*{\refname}%
   }%
 }
-\newcommand*\suppinfoname{Supporting Information Available}
+\newcommand*\reproducename{Reproducibility statement}
 \newcommand*\cup@iffalse{\iffalse}
 \newtoks\cup@collect@toks
 \newtoks\cup@collect@empty@toks
@@ -1193,8 +1194,8 @@
 \def\cup@journal@name{Journal of Open Aviation Science}
 
 \geometry{
-  paperwidth=174mm, paperheight=247mm,
-  top=2.3cm, bottom=1.4cm, left=1.7cm, right=1.7cm, 
+  b5paper,
+  top=2.3cm, bottom=1.6cm, left=1.7cm, right=1.7cm, 
   headsep=0.8cm
 }
 
@@ -1229,6 +1230,12 @@
   citebordercolor={structure@color},
 }
 
+\ifx \cup@layout \cup@layout@preprint
+  \RequirePackage[right]{lineno}
+  \linenumbers
+\fi
+
+
 \patch@numeric@authors
 \patchcmd{\@maketitle}
   {joas-logo}{joas-logo}{}{}
@@ -1245,7 +1252,9 @@
 % \RequirePackage[authordate,natbib]{biblatex-chicago}
 % \renewcommand*{\bibfont}{\small}
 
-\usepackage[backend=biber,style=numeric,maxbibnames=10]{biblatex}
+\RequirePackage[backend=biber,style=numeric,maxbibnames=10]{biblatex}
+
+\RequirePackage{booktabs}
 
 
 \SectionNumbersOn
