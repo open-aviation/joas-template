@@ -12,15 +12,15 @@
 \renewcommand\section{\@startsection {section}{1}{\z@}%
   {-3.5ex \@plus -1ex \@minus -.2ex}%
   {2ex \@plus .5ex \@minus -.5ex}%
-  {\sffamily\bfseries}}
+  {\bfseries}}
 \renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
   {-3.25ex\@plus -1ex \@minus -.2ex}%
   {1ex \@plus .2ex \@minus .2ex}%
-  {\sffamily\bfseries}}
+  {\bfseries}}
 \renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
   {-3.25ex\@plus -1ex \@minus -.2ex}%
   {0.5ex \@plus .2ex}%
-  {\sffamily}} 
+  {}} 
 \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
   {3.25ex \@plus1ex \@minus.2ex}%
   {-1em}%
