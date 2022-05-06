@@ -1,8 +1,12 @@
-%% ----------------------------------------------------------------
+%% ----------------------------------------------------------------------
 %% This is file `joas.cls'.
 %%
-%% adapted from cup-journal template
-%% ----------------------------------------------------------------
+%% joas --- Support for submissions to Journal of Open Aviation Science
+%% Email: j.sun-1@tudelft.nl
+%%
+%% Released under the LaTeX Project Public License v1.3c or later
+%% See http://www.latex-project.org/lppl.txt
+%% ----------------------------------------------------------------------
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{joas}
@@ -12,7 +16,7 @@
 \renewcommand\section{\@startsection {section}{1}{\z@}%
   {-3.5ex \@plus -1ex \@minus -.2ex}%
   {2ex \@plus .5ex \@minus -.5ex}%
-  {\bfseries}}
+  {\large\bfseries}}
 \renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
   {-3.25ex\@plus -1ex \@minus -.2ex}%
   {1ex \@plus .2ex \@minus .2ex}%
@@ -40,6 +44,8 @@
 \RequirePackage[semibold]{sourcesanspro}
 \RequirePackage[scaled=0.95]{inconsolata}
 \RequirePackage[italic,eulergreek,defaultmathsizes]{mathastext}
+
+\RequirePackage[table,svgnames]{xcolor}
 
 \RequirePackage{lastpage} % For getting the last page in the first page header
 \RequirePackage{enumitem} % For list styling
@@ -165,7 +171,6 @@
 \RequirePackage{changepage}
 \RequirePackage{stringstrings}
 \RequirePackage[absolute]{textpos}
-\RequirePackage[table,svgnames]{xcolor}
 \RequirePackage{
   caption,
   floatrow,
@@ -173,25 +178,16 @@
   url,
   mdframed,
   mfirstuc,
-%   footmisc,
   alphalph
 }
 \urlstyle{same}
 \captionsetup{
-  font={
-    footnotesize,
-    sf,
-%    sansmath
-  },
+  font={footnotesize,sf},
   labelfont=bf,
   labelsep=period
 }
 \floatsetup{
-  font={
-    sf,
-%    sansmath,
-    footnotesize
-  }
+  font={sf,footnotesize},
 }
 \colorlet{structure@color}{black}
 \def\@seccntformat#1{\@ifundefined{#1@cntformat}%
@@ -1209,12 +1205,29 @@
 \fi
 
 \ifx \cup@manuscript \cup@manuscript@data
-  \colorlet{structure@color}{DarkSeaGreen!50!black}
+  \colorlet{structure@color}{DarkSeaGreen!40!black}
 \fi
 
 \ifx \cup@manuscript \cup@manuscript@software
   \colorlet{structure@color}{DarkOrchid!60!black}
 \fi
+
+\RequirePackage[colorlinks=true]{hyperref}
+
+\Hy@AtBeginDocument{
+  \def\@pdfborder{0 0 0.5}
+  \def\@pdfborderstyle{/S/U/W 0.5} % Hyperlink border style will be underline of width 0.5pt
+}
+
+\hypersetup{
+  anchorcolor={structure@color},
+  citecolor={structure@color},
+  linkcolor={structure@color},
+  urlcolor={structure@color},
+  linkbordercolor={structure@color},
+  urlbordercolor={structure@color},
+  citebordercolor={structure@color},
+}
 
 \patch@numeric@authors
 \patchcmd{\@maketitle}
@@ -1229,12 +1242,22 @@
 \patchcmd{\trfiller}{structure@color}{black}{}{}
 \patchcmd{\thfiller}{structure@color}{black}{}{}
 
-\RequirePackage[authordate,natbib]{biblatex-chicago}
-\renewcommand*{\bibfont}{\small}
+% \RequirePackage[authordate,natbib]{biblatex-chicago}
+% \renewcommand*{\bibfont}{\small}
+
+\usepackage[backend=biber,style=numeric,maxbibnames=10]{biblatex}
 
 
 \SectionNumbersOn
 
+
+%%
+%% Based on the cup-jounal class
+%%
+%% Support for submissions to Cambridge University Press journals
+%% Email: paul.gessler@overleaf.com
+%% Released under the LaTeX Project Public License v1.3c or later
+%% See http://www.latex-project.org/lppl.txt
 %% 
 %% Based on the achemso class
 %% Originally developed by Mats Dahlgren
