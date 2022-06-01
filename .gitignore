@@ -1,3 +1,10 @@
+tmp
+build/pdf/*
+!build/pdf/empty
+
+build/html/*
+!build/html/empty
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof

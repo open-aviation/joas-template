@@ -2,6 +2,8 @@
 
 The repository contains the LaTex template for Journal of Open Aviation Science.
 
+Please make sure the entire manuscript is in one latex file `main.tex`.
+
 ## How to get the template
 
 You can download everything in a zip file:   
