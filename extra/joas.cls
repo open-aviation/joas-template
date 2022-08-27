@@ -472,6 +472,8 @@
 \newcommand*\revised[1]  {\gdef\cup@revd{#1}}
 \newcommand*\accepted[1] {\gdef\cup@accptd{#1}}
 \newcommand*\published[1]{\gdef\cup@publd{#1}}
+\newcommand*\editor[1] {\gdef\cup@editor{#1}}
+\newcommand*\reviewers[1] {\gdef\cup@reviewers{#1}}
 \newlength\cup@space@pre@title
 \setlength\cup@space@pre@title{1em}
 \newlength\cup@space@post@title
@@ -515,7 +517,7 @@
 \newcommand*\cup@copyright@notice{\scriptsize%
   \textcopyright\ TU Delft Open Publishing \cup@year. 
   This is an Open Access article, distributed under the terms of the 
-  Creative Commons Attribution-NonCommercial-ShareAlike licence (\url{https://creativecommons.org/licenses/by-nc-sa/4.0/})
+  Creative Commons Attribution 4.0 International (CC BY 4.0) licence (\url{https://creativecommons.org/licenses/by/4.0/})
 }
 
 \newcommand*\cup@type@list{article,rescience,data,software}
@@ -560,7 +562,7 @@
           \let\@fnsymbol\cup@author@fnsymbol
           \let\footnote@org\footnote
           \let\footnote\cup@title@footnote
-          \cup@maketitle@reproduce \@title
+          \@title
           \cup@title@footnote@check
           \global\cup@footnote@cnt\c@footnote
           \@maketitle@title@hook
@@ -595,7 +597,8 @@
           \datesize
           \datefont
           \ifcup@dates
-           (Received \cup@recvd; revised \cup@revd; accepted \cup@accptd; first published online \cup@publd)
+           (Received \cup@recvd; revised \cup@revd; accepted \cup@accptd; first published online \cup@publd) \\
+           (Editor: \cup@editor; open reviewed by: \cup@reviewers) \\
             \vspace*{\cup@space@post@date}%
           \fi
           \ifcup@copyright
@@ -607,6 +610,8 @@
 }
 \newcommand*\@maketitle@title@hook{}
 \newcommand*\cup@maketitle@reproduce{}
+\newcommand*\cup@maketitle@opendata{}
+\newcommand*\cup@maketitle@funding{}
 \newcommand*\cup@title@footnote[1]{%
   \footnotemark
   \g@addto@macro\@thanks{\footnotetext{#1}}%
@@ -1099,18 +1104,22 @@
   }
 \endgroup
 \newenvironment{acknowledgement}{%
-  \cup@section*{\acknowledgementname}%
+  \cup@section*{Acknowledgement}%
 }{}
 \newenvironment{reproduce}{%
-  \cup@section*{\reproducename}%
+  \cup@section*{Reproducibility statement}%
 }{}
-\newcommand*\acknowledgementname{Acknowledgement}
+\newenvironment{opendata}{%
+  \cup@section*{Open data statement}%
+}{}
+\newenvironment{funding}{%
+  \cup@section*{Funding statement}%
+}{}
 \AtEndOfClass{%
   \def\bibsection{%
     \cup@section*{\refname}%
   }%
 }
-\newcommand*\reproducename{Reproducibility statement}
 \newcommand*\cup@iffalse{\iffalse}
 \newtoks\cup@collect@toks
 \newtoks\cup@collect@empty@toks
