@@ -161,6 +161,7 @@
 \newcommand*\cup@manuscript@rescience{rescience}
 \newcommand*\cup@manuscript@data{data}
 \newcommand*\cup@manuscript@software{software}
+\newcommand*\cup@manuscript@editorial{editorial}
 \newcommand*\cup@layout@preprint{preprint}
 
 \setkeys{cup}{
@@ -520,7 +521,7 @@
   Creative Commons Attribution 4.0 International (CC BY 4.0) licence (\url{https://creativecommons.org/licenses/by/4.0/})
 }
 
-\newcommand*\cup@type@list{article,rescience,data,software}
+\newcommand*\cup@type@list{article,rescience,data,software,editorial}
 \newcommand*\cup@type@default{article}
 \newcommand*\cup@type@check{%
   \@tempswafalse
@@ -1224,6 +1225,10 @@
 
 \ifx \cup@manuscript \cup@manuscript@software
   \colorlet{structure@color}{DarkOrchid!60!black}
+\fi
+
+\ifx \cup@manuscript \cup@manuscript@editorial
+  \colorlet{structure@color}{Red!60!black}
 \fi
 
 \RequirePackage[colorlinks=true]{hyperref}
