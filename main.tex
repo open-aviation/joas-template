@@ -7,12 +7,13 @@
 
 \doi{10.74800/joas.x.xxxx}
 
+
 \received {1 April 2022}
 \revised  {1 May 2022}
 \accepted {10 May 2022}
 \published{20 May 2022}
-\editor{Junzi Sun}
-\reviewers{none}
+\editor{Editor Name}
+\reviewers{First Reviewer, Second Reviwer, Third Reviwer}
 
 
 % --- blew is the area for authors ---
@@ -21,57 +22,55 @@
 \usepackage[english]{babel}
 \usepackage{blindtext}
 
-\addbibresource{reference.bib} % specify the .bib file for references
+% specify the .bib file for references
+\addbibresource{reference.bib} 
 
-\title{Creating an open community to support reusable and reproducible aviation science}
+% Make sure your article tile is within 12 words
+\title{Using a concise title for your article}
 
-\author{Junzi Sun}
-\affiliation{Faculty of Aerospace Engineering, Delft University of Technology, Netherlands}
-\email{j.sun-1@tudelft.nl}
+\author{First Author}
+\affiliation{Institution-1, City, Country}
+\email{correspondence@email.domain}
 
-\author{Xavier Olive}
-\affiliation{Office National d'Etudes et de Recherches Aérospatiales, France}
+\author{Second Author}
+\affiliation{Institution-2, City, Country}
 
-\author{Martin Strohmeier}
-\affiliation{OpenSky Network, Switzerland}
-\alsoaffiliation{University of Oxford, UK}
+\author{Third Author}
+\alsoaffiliation{Institution-1, City, Country}
+\affiliation{Institution-3, City, Country}
 
 
-%% first word caps
-\keywords{Aviation; reproducibility; transparency; data; software; re-science} 
+% maximum five keywords
+\keywords{keyword; keyword one; keywork two} 
 
+% Important, only index abbreviation if a term contains more than two words, and the term is used more than ten times throughout the paper. Otherwise, spell them out in full in the paper.
 \abbreviations{
-    ATM: Air Traffic Managment, 
-    ADS-B: Automatic Dependent Surveillance--Broadcast
+    JOAS: Journal of Open Aviation Science, 
+    ATM: Air Traffic Managment
 }
 
 
 \begin{document}
 
 \begin{abstract}
-  Testing abstract \blindtext 
+  An abstract summarizes in one paragraph with 300 words or less, the major aspects of the entire paper. They often include: 1) the overall purpose of the study and the research problem you investigated; 2) the basic design of you research approach; 3) major findings as a result of your analysis; and, 4) a brief summary of your interpretations and conclusions. 
 \end{abstract}
 
 
 \section{Introduction}
 
-\blindtext Some example open open-source research data \cite{schafer2014bringing} and tools \cite{olive2019traffic,sun2020openap}. The end result is in Figure \ref{fig:logo}: nice, isn't it?
+\blindtext 
+Some example open open-source research data \cite{schafer2014bringing} and tools \cite{olive2019traffic}. 
 
 
-\blindtext[2]
-
-\blindtext See also Table \ref{tb:eng_perf_params}.
+\blindtext [2]
 
 
 \section{Method}
 
-Callsigns are nice in tt mode \texttt{AFR88HH} and $\rho = 1$ inline
+\subsection{Method part 1}
 
-\paragraph{Paragraph title} \blindtext
-
-\subsection{Method 1}
-
-\blindtext
+\blindtext The end result is in Figure \ref{fig:logo}.
 
 \begin{figure}[ht!]
   \centering
@@ -82,80 +81,95 @@ Callsigns are nice in tt mode \texttt{AFR88HH} and $\rho = 1$ inline
 
 \blindtext\footnote{This is how a footnote works.}
 
-\subsection{Method 2}
+\subsection{Method part 2}
 
-\subsubsection{Method 2-1}
+\subsubsection{Method part 2-1}
 
-\blindtext
+\blindtext Reference to Equation \ref{eq:cauchy_momentum}.
 
-\begin{equation}
-  E = m c^2
+\begin{equation} \label{eq:cauchy_momentum}
+\rho\frac{\mathrm{D} \mathbf{u}}{\mathrm{D} t} = - \nabla p + \nabla \cdot \boldsymbol \tau + \rho\,\mathbf{g}
 \end{equation}
 
-\blindtext
+
+\subsubsection{Method part 2-2}
+
+\blindtext Table \ref{tb:example_table} shows an example.
 
 \begin{table}[H]
   \centering
   \small
-  \caption{Engine performance parameters}
-  \label{tb:eng_perf_params}
+  \caption{Example table}
+  \label{tb:example_table}
   \begin{tabular}{lll}
   \toprule
   \textbf{Parameter} & \textbf{Notation} & \textbf{Remarks} \\
   \midrule
   name & - & engine common identifier \\
-  manufacture & - & -  \\
+  manufacture & - & name of the manufacture  \\
   bpr & $\lambda$ & bypass ratio \\
   pr & - & pressure ratio \\
-  max\_thrust & $T_0$ & maximum static thrust, sea level (unit: N) \\
-  fuel\_c3 & $C_\mathrm{ff3}$ & fuel flow coefficient, 3rd order term (unit: kg/s) \\
-  fuel\_c2 & $C_\mathrm{ff2}$ & fuel flow coefficient, 2nd order term (unit: kg/s) \\
-  fuel\_c1 & $C_\mathrm{ff1}$ & fuel flow coefficient, 1st order term (unit: kg/s) \\
-  cruise\_thrust & $T_\mathrm{cr}$ & thrust at the top of climb (unit: N) \\
-  cruise\_mach & $M_\mathrm{cr}$ & cruise Mach number for the thrust condition \\
-  cruise\_alt & $h_\mathrm{cr}$ & cruise Mach altitude for the thrust condition (unit: ft) \\
+  thrust & $T_0$ & maximum static thrust\\
   \bottomrule
   \end{tabular}
 \end{table}
 
 \blindtext
 
+
+\section{Discussions}
+
+\paragraph{Paragraph title} This is the paragraph with title if you want to use such function in the paper. \blindtext
+
+
 \section{Conclusion}
 
-\Blindtext
-
-\section*{Authors contributions}
-Junzi Sun: Conceptualization, Methodology, Software, Writing- Original draft \\
-Xavier Olive: Data curation, Writing- Original draft \\
-Martin Strohmeier: Visualization, Investigation \\
-
-\begin{acknowledgement}
 \blindtext
-\end{acknowledgement}
 
-
-\printbibliography
 
 \appendix
 
 \section{Supplementary figures}
 \blindtext
 
-\section{Supplementary data tables}
+\section{Supplementary tables}
 \blindtext
+
+
+\begin{acknowledgement}
+  Include your acknowledgement in this section.
+\end{acknowledgement}
+
+% credit / author contributions are mandatory for all papers with more than one author
+\begin{credit}
+  If the paper has more than one author, the CRediT section must be included. See example usage on \url{https://casrai.org/credit/}
+
+  \begin{itemize}
+    \item First Author: Conceptualization, Methodology, Software, Writing- Original draft
+    \item Second Author: Data curation, Writing- Original draft
+    \item Third Author: Visualization, Investigation
+  \end{itemize}
+\end{credit}
+
 
 \begin{funding}
   When applicable, please specify the funding information for this research.
 \end{funding}
 
-% The following reproducibility amd data statement is mandatory for all papers
+
+% Data statement is mandatory for all papers
 \begin{opendata}
   DOI and short description to supplementary data.
 \end{opendata}
 
+% reproducibility statement is mandatory for all papers
 \begin{reproduce}
 Information on how to reproduce this research, including access to 1) source code related the research, 2) source code for the figures, 3) source code / data for the tables when applicable.
 \end{reproduce}
+
+
+
+\printbibliography
 
 
 

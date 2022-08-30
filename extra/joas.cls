@@ -612,6 +612,7 @@
 \newcommand*\cup@maketitle@reproduce{}
 \newcommand*\cup@maketitle@opendata{}
 \newcommand*\cup@maketitle@funding{}
+\newcommand*\cup@maketitle@credit{}
 \newcommand*\cup@title@footnote[1]{%
   \footnotemark
   \g@addto@macro\@thanks{\footnotetext{#1}}%
@@ -1115,6 +1116,9 @@
 \newenvironment{funding}{%
   \cup@section*{Funding statement}%
 }{}
+\newenvironment{credit}{%
+  \cup@section*{Author contributions}%
+}{}
 \AtEndOfClass{%
   \def\bibsection{%
     \cup@section*{\refname}%
@@ -1261,7 +1265,7 @@
 % \RequirePackage[authordate,natbib]{biblatex-chicago}
 % \renewcommand*{\bibfont}{\small}
 
-\RequirePackage[backend=biber,style=numeric,maxbibnames=10]{biblatex}
+\RequirePackage[backend=biber,style=numeric,maxbibnames=10,sorting=none]{biblatex}
 
 \RequirePackage{booktabs}
 
