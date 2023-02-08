@@ -15,9 +15,7 @@ Or checkout use Git:
 git clone https://github.com/open-aviation/joas-template.git my-paper
 ```
 
-## Are you using Overleaf
+## Are you using Overleaf?
 
-You can upload the zip of the template on https://overleaf.com/project, following:
-
-New Project -> Upload Project -> then select the zip file you just created
+The template is available in the official gallery. You may use the following [link](https://www.overleaf.com/latex/templates/journal-of-open-aviation-science-joas-template/ndxgcqpmksnv)
 
