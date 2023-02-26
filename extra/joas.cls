@@ -9,7 +9,7 @@
 %% ----------------------------------------------------------------------
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{joas}
+\ProvidesClass{extra/joas}
   [2021/05/04 v1.0 Submission to JOAS]
 \LoadClass[10pt,a4paper,twoside]{article}
 % Style the sectioning elements:
