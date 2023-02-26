@@ -553,7 +553,7 @@
   \parbox[b]{\dimexpr\textwidth-20mm\relax}{%
     \footnotesize{\journalnamefont\cup@journal@name} 
     (\cup@year), {\volumefont\cup@vol}, \thepage--\pageref{LastPage}
-    \par doi:{\cup@doi}}\hfill\includegraphics[width=20mm]{extra/joas-logo}\par
+    \par doi:{\cup@doi}}\hfill\includegraphics[width=20mm]{figures/joas-logo}\par
   \vspace*{\baselineskip}
   {\sffamily\bfseries\color{structure@color}\MakeUppercase{\convertchar{\cup@manuscript}{-}{ }}\par}
   \vspace*{\cup@space@pre@title}%
