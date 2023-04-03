@@ -10,7 +10,7 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{extra/joas}
-  [2021/05/04 v1.0 Submission to JOAS]
+[2021/05/04 v1.0 Submission to JOAS]
 \LoadClass[10pt,a4paper,twoside]{article}
 % Style the sectioning elements:
 \renewcommand\section{\@startsection {section}{1}{\z@}%
@@ -24,7 +24,7 @@
 \renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
   {-3.25ex\@plus -1ex \@minus -.2ex}%
   {0.5ex \@plus .2ex}%
-  {}} 
+  {}}
 \renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
   {3.25ex \@plus1ex \@minus.2ex}%
   {-1em}%
@@ -162,6 +162,7 @@
 \newcommand*\cup@manuscript@data{data}
 \newcommand*\cup@manuscript@software{software}
 \newcommand*\cup@manuscript@editorial{editorial}
+\newcommand*\cup@manuscript@proceeding{proceeding}
 \newcommand*\cup@layout@preprint{preprint}
 
 \setkeys{cup}{
@@ -173,7 +174,7 @@
   keywords,
 }
 \RequirePackage{geometry}
-\RequirePackage{csquotes}  
+\RequirePackage{csquotes}
 \RequirePackage{changepage}
 \RequirePackage{stringstrings}
 \RequirePackage[absolute]{textpos}
@@ -197,10 +198,10 @@
 }
 \colorlet{structure@color}{black}
 \def\@seccntformat#1{\@ifundefined{#1@cntformat}%
-   {\csname the#1\endcsname\quad}%  default
-   {\csname #1@cntformat\endcsname}% individual control
-   }
-   \def\section@cntformat{\thesection.\hspace{1ex}}
+  {\csname the#1\endcsname\quad}%  default
+  {\csname #1@cntformat\endcsname}% individual control
+}
+\def\section@cntformat{\thesection.\hspace{1ex}}
 \renewcommand\appendix{\par
   \setcounter{section}{0}
   \setcounter{subsection}{0}
@@ -222,7 +223,7 @@
 \else
   \expandafter\@gobble
 \fi
-  {hyperref}
+{hyperref}
 \renewcommand*{\title}[2][]{%
   \gdef\cup@title@short{#1}%
   \gdef\@title{#2}%
@@ -240,10 +241,10 @@
   \global\advance\cup@author@cnt\@ne\relax
   \expandafter\gdef\csname @author@\@roman\cup@author@cnt\endcsname{#1}%
   \begingroup
-    \advance\cup@affil@cnt\@ne
-    \expandafter\xdef\csname @author@affil@\@roman
-      \cup@author@cnt\endcsname
-      {\the\cup@affil@cnt}%
+  \advance\cup@affil@cnt\@ne
+  \expandafter\xdef\csname @author@affil@\@roman
+  \cup@author@cnt\endcsname
+  {\the\cup@affil@cnt}%
   \endgroup
 }
 \@onlypreamble\author
@@ -266,13 +267,13 @@
     }{%
       \global\advance\cup@affil@cnt\@ne\relax
       \expandafter\gdef\csname @address@\@roman\cup@affil@cnt\endcsname
-        {#2}%
+      {#2}%
       \ifx\relax#1\relax
         \expandafter\gdef\csname @affil@\@roman\cup@affil@cnt\endcsname
-          {#2}%
+        {#2}%
       \else
         \expandafter\gdef\csname @affil@\@roman\cup@affil@cnt\endcsname
-          {#1}%
+        {#1}%
       \fi
     }%
   \else
@@ -282,22 +283,22 @@
 \@onlypreamble\affiliation
 \newcommand*\cup@affil@ifdup[1]{%
   \begingroup
-    \def\@tempa{#1}%
-    \@tempswafalse
-    \@tempcnta\z@\relax
-    \cup@affil@ifdup@aux
-    \if@tempswa
-      \aftergroup\@firstoftwo
-    \else
-      \aftergroup\@secondoftwo
-    \fi
+  \def\@tempa{#1}%
+  \@tempswafalse
+  \@tempcnta\z@\relax
+  \cup@affil@ifdup@aux
+  \if@tempswa
+    \aftergroup\@firstoftwo
+  \else
+    \aftergroup\@secondoftwo
+  \fi
   \endgroup
 }
 \newcommand*\cup@affil@ifdup@aux{%
   \advance\@tempcnta\@ne\relax
   \expandafter\expandafter\expandafter\def\expandafter\expandafter
-    \expandafter\@tempb\expandafter\expandafter\expandafter
-    {\csname @address@\@roman\@tempcnta\endcsname}%
+  \expandafter\@tempb\expandafter\expandafter\expandafter
+  {\csname @address@\@roman\@tempcnta\endcsname}%
   \ifx\@tempa\@tempb
     \expandafter\@tempswatrue
   \else
@@ -308,12 +309,12 @@
 }
 \newcommand*\cup@affil@swap[1]{%
   \begingroup
-    \def\@tempa{#1}%
-    \@tempcnta\z@\relax
-    \@tempcntb\z@\relax
-    \cup@affil@ifdup@aux
-    \advance\cup@affil@cnt\@ne\relax
-    \cup@affil@swap@aux
+  \def\@tempa{#1}%
+  \@tempcnta\z@\relax
+  \@tempcntb\z@\relax
+  \cup@affil@ifdup@aux
+  \advance\cup@affil@cnt\@ne\relax
+  \cup@affil@swap@aux
   \endgroup
 }
 \newcommand*\cup@affil@swap@aux{%
@@ -336,21 +337,21 @@
       \global\advance\cup@affil@cnt\@ne\relax
       \@tempcnta\cup@affil@cnt\relax
       \expandafter\gdef\csname @address@\@roman\cup@affil@cnt\endcsname
-        {#2}%
+      {#2}%
       \ifx\relax#1\relax
         \expandafter\gdef\csname @affil@\@roman\cup@affil@cnt\endcsname
-          {#2}%
+        {#2}%
       \else
         \expandafter\gdef\csname @affil@\@roman\cup@affil@cnt\endcsname
-          {#1}%
+        {#1}%
       \fi
     }%
     \@ifundefined{@author@alsoaffil@\@roman\cup@author@cnt}{%
       \expandafter\xdef\csname @author@alsoaffil@\@roman\cup@author@cnt
-        \endcsname{\the\@tempcnta}%
+      \endcsname{\the\@tempcnta}%
     }{%
       \expandafter\xdef\csname @author@alsoaffil@\@roman\cup@author@cnt
-        \endcsname{%
+      \endcsname{%
         \csname @author@alsoaffil@\@roman\cup@author@cnt\endcsname
         ,\the\@tempcnta
       }%
@@ -361,26 +362,26 @@
 }
 \newcommand*\cup@alsoaffil@find[1]{%
   \begingroup
-    \def\@tempa{#1}%
-    \@tempcnta\z@\relax
-    \@tempcntb\z@\relax
-    \cup@affil@ifdup@aux
+  \def\@tempa{#1}%
+  \@tempcnta\z@\relax
+  \@tempcntb\z@\relax
+  \cup@affil@ifdup@aux
   \expandafter\endgroup
   \expandafter\@tempcnta\the\@tempcnta\relax
 }
 \newcommand*\altaffiliation[1]{%
   \ifnum\cup@author@cnt>\z@\relax
     \begingroup
-      \cup@altaffil@ifdup{#1}{%
-        \expandafter\xdef\csname @author@altaffil@\\cup@author@cnt
-          \endcsname{\the\@tempcnta}%
-      }{%
-        \global\advance\cup@affil@alt@cnt\@ne\relax
-        \expandafter\gdef\csname @altaffil@\\cup@affil@alt@cnt
-          \endcsname{#1}%
-        \expandafter\xdef\csname @author@altaffil@\@roman\cup@author@cnt
-          \endcsname{\the\cup@affil@alt@cnt}%
-      }%
+    \cup@altaffil@ifdup{#1}{%
+      \expandafter\xdef\csname @author@altaffil@\\cup@author@cnt
+      \endcsname{\the\@tempcnta}%
+    }{%
+      \global\advance\cup@affil@alt@cnt\@ne\relax
+      \expandafter\gdef\csname @altaffil@\\cup@affil@alt@cnt
+      \endcsname{#1}%
+      \expandafter\xdef\csname @author@altaffil@\@roman\cup@author@cnt
+      \endcsname{\the\cup@affil@alt@cnt}%
+    }%
     \endgroup
   \else
     \cup@warning{Affiliation with no author}%
@@ -403,8 +404,8 @@
 \newcommand*\cup@altaffil@ifdup@aux{%
   \advance\@tempcnta\@ne\relax
   \expandafter\expandafter\expandafter\def\expandafter\expandafter
-    \expandafter\@tempb\expandafter\expandafter\expandafter
-    {\csname @altaffil@\@roman\@tempcnta\endcsname}%
+  \expandafter\@tempb\expandafter\expandafter\expandafter
+  {\csname @altaffil@\@roman\@tempcnta\endcsname}%
   \ifx\@tempa\@tempb
     \expandafter\@tempswatrue
   \else
@@ -417,9 +418,9 @@
   \ifnum\cup@author@cnt>\z@\relax
     \cup@emailtrue%
     \expandafter\gdef\csname @emailname@\@roman\cup@author@cnt\endcsname
-      {#1}%
+    {#1}%
     \expandafter\gdef\csname @email@\@roman\cup@author@cnt\endcsname
-      {#2}%
+    {#2}%
   \else
     \cup@warning{E-mail with no author}%
   \fi
@@ -428,7 +429,7 @@
 \newcommand*\fax[1]{%
   \ifnum\cup@author@cnt>\z@\relax
     \expandafter\gdef\csname @fax@\@roman\cup@author@cnt\endcsname
-      {#1}%
+    {#1}%
   \else
     \cup@warning{Fax number with no author}%
   \fi
@@ -437,7 +438,7 @@
 \newcommand*\phone[1]{%
   \ifnum\cup@author@cnt>\z@\relax
     \expandafter\gdef\csname @phone@\@roman\cup@author@cnt\endcsname
-      {#1}%
+    {#1}%
   \else
     \cup@warning{Phone number with no author}%
   \fi
@@ -467,6 +468,7 @@
     \par
   \fi
 }
+\newcommand*\conference[1]{\gdef\cup@conference{#1}}
 \newcommand*\doi[1]{\gdef\cup@doi{#1}}
 \@onlypreamble\doi
 \newcommand*\received[1] {\gdef\cup@recvd{#1}}
@@ -516,12 +518,12 @@
 }
 \pagestyle{plain}
 \newcommand*\cup@copyright@notice{\scriptsize%
-  \textcopyright\ TU Delft Open Publishing \cup@year. 
-  This is an Open Access article, distributed under the terms of the 
+  \textcopyright\ TU Delft Open Publishing \cup@year.
+  This is an Open Access article, distributed under the terms of the
   Creative Commons Attribution 4.0 International (CC BY 4.0) licence (\url{https://creativecommons.org/licenses/by/4.0/})
 }
 
-\newcommand*\cup@type@list{article,rescience,data,software,editorial}
+\newcommand*\cup@type@list{article,rescience,data,software,editorial,proceeding}
 \newcommand*\cup@type@default{article}
 \newcommand*\cup@type@check{%
   \@tempswafalse
@@ -544,70 +546,84 @@
 
 
 \def\@maketitle{%
-  \setlength\parindent{\z@}
-  \setlength{\parskip}{1pt}
-  \ifnum\cup@author@cnt<\z@\relax
-    \cup@warning{No authors defined: At least one author is required}%
+\setlength\parindent{\z@}
+\setlength{\parskip}{1pt}
+\ifnum\cup@author@cnt<\z@\relax
+  \cup@warning{No authors defined: At least one author is required}%
+\fi
+\newpage\vspace*{\dimexpr-\headsep-\headheight\relax}
+\parbox[b]{\dimexpr\textwidth-20mm\relax}{%
+\footnotesize{\journalnamefont\cup@journal@name}
+(\cup@year), {\volumefont\cup@vol}, \thepage--\pageref{LastPage}
+\par doi:{\cup@doi}}\hfill\includegraphics[width=20mm]{extra/joas-logo}\par
+\vspace*{\baselineskip}
+{
+  \sffamily\bfseries\color{structure@color}
+  \MakeUppercase{\convertchar{\cup@manuscript}{-}{ }}
+  {
+    \ifx \cup@manuscript \cup@manuscript@proceeding
+      | \emph{\cup@conference}
+    \fi
+  }
+  \par
+}
+
+
+
+\vspace*{\cup@space@pre@title}%
+
+
+{%
+  \titlefont
+  \titlesize
+  \let\@fnsymbol\cup@author@fnsymbol
+  \let\footnote@org\footnote
+  \let\footnote\cup@title@footnote
+  \@title
+  \cup@title@footnote@check
+  \global\cup@footnote@cnt\c@footnote
+  \@maketitle@title@hook
+  \par
+}%
+\vspace*{\cup@space@post@title}%
+{%
+  \authorsize
+  \authorfont
+  %\frenchspacing
+  \cup@author@list
+  \par
+}%
+\vspace*{\cup@space@post@author}%
+{%
+  \affilsize
+  \affilfont
+  \cup@address@list
+  \par
+}%
+\vspace*{\cup@space@post@address}%
+{%
+  \emailsize
+  \emailfont
+  \ifcup@email
+    \expandafter\cup@contact@details
+    \par
+    \vspace*{\cup@space@post@email}%
   \fi
-  \newpage\vspace*{\dimexpr-\headsep-\headheight\relax}
-  \parbox[b]{\dimexpr\textwidth-20mm\relax}{%
-    \footnotesize{\journalnamefont\cup@journal@name} 
-    (\cup@year), {\volumefont\cup@vol}, \thepage--\pageref{LastPage}
-    \par doi:{\cup@doi}}\hfill\includegraphics[width=20mm]{figures/joas-logo}\par
-  \vspace*{\baselineskip}
-  {\sffamily\bfseries\color{structure@color}\MakeUppercase{\convertchar{\cup@manuscript}{-}{ }}\par}
-  \vspace*{\cup@space@pre@title}%
-        {%
-          \titlefont
-          \titlesize
-          \let\@fnsymbol\cup@author@fnsymbol
-          \let\footnote@org\footnote
-          \let\footnote\cup@title@footnote
-          \@title
-          \cup@title@footnote@check
-          \global\cup@footnote@cnt\c@footnote
-          \@maketitle@title@hook
-          \par
-        }%
-        \vspace*{\cup@space@post@title}%
-        {%
-          \authorsize
-          \authorfont
-          %\frenchspacing
-          \cup@author@list
-          \par
-        }%
-        \vspace*{\cup@space@post@author}%
-        {%
-          \affilsize
-          \affilfont
-          \cup@address@list
-          \par
-        }%
-        \vspace*{\cup@space@post@address}%
-        {%
-          \emailsize
-          \emailfont
-          \ifcup@email
-            \expandafter\cup@contact@details
-            \par
-            \vspace*{\cup@space@post@email}%
-          \fi
-        }%
-        {%
-          \datesize
-          \datefont
-          \ifcup@dates
-           (Received \cup@recvd; revised \cup@revd; accepted \cup@accptd; first published online \cup@publd) \\
-           (Editor: \cup@editor; open reviewed by: \cup@reviewers) \\
-            \vspace*{\cup@space@post@date}%
-          \fi
-          \ifcup@copyright
-            \bgroup\let\thefootnote\relax
-            \footnote{\cup@copyright@notice}
-            \egroup
-          \fi
-        }%
+}%
+{%
+  \datesize
+  \datefont
+  \ifcup@dates
+    (Received \cup@recvd; revised \cup@revd; accepted \cup@accptd; first published online \cup@publd) \\
+    (Editor: \cup@editor; open reviewed by: \cup@reviewers) \\
+    \vspace*{\cup@space@post@date}%
+  \fi
+  \ifcup@copyright
+    \bgroup\let\thefootnote\relax
+    \footnote{\cup@copyright@notice}
+    \egroup
+  \fi
+}%
 }
 \newcommand*\@maketitle@title@hook{}
 \newcommand*\cup@maketitle@reproduce{}
@@ -622,13 +638,13 @@
   \ifx\@thanks\@empty
   \else
     \begingroup
-      \toks@=\expandafter{\@thanks}%
-      \xdef\@thanks{%
-        \begingroup
-          \let\noexpand\@fnsymbol\noexpand\cup@author@fnsymbol
-          \the\toks@
-        \endgroup
-      }%
+    \toks@=\expandafter{\@thanks}%
+    \xdef\@thanks{%
+      \begingroup
+      \let\noexpand\@fnsymbol\noexpand\cup@author@fnsymbol
+      \the\toks@
+      \endgroup
+    }%
     \endgroup
   \fi
 }
@@ -709,7 +725,7 @@
 \newcommand*\cup@author@affil@aux{%
   \ifnum\cup@affil@cnt>\@ne\relax
     \expandafter\cup@affil@marker@cnt\csname @author@affil@\@roman
-      \@tempcnta\endcsname\relax
+    \@tempcnta\endcsname\relax
     \advance\cup@affil@marker@cnt\cup@footnote@cnt\relax
     \protected@edef\cup@author@footnotes{%
       \cup@author@footnotes
@@ -733,7 +749,7 @@
 }
 \newcommand*\cup@author@affil@also@aux{%
   \expandafter\@for\expandafter\@tempa\expandafter:\expandafter
-    =\csname @author@alsoaffil@\@roman\@tempcnta\endcsname\do{%
+  =\csname @author@alsoaffil@\@roman\@tempcnta\endcsname\do{%
     \cup@affil@marker@cnt\@tempa\relax
     \advance\cup@affil@marker@cnt\cup@footnote@cnt\relax
     \protected@edef\cup@author@footnotes{%
@@ -750,7 +766,7 @@
 }
 \newcommand*\cup@author@affil@alt@aux{%
   \expandafter\cup@affil@marker@cnt
-    \csname @author@altaffil@\@roman\@tempcnta\endcsname\relax
+  \csname @author@altaffil@\@roman\@tempcnta\endcsname\relax
   \advance\cup@affil@marker@cnt\cup@affil@cnt\relax
   \advance\cup@affil@marker@cnt\cup@footnote@cnt\relax
   \protected@edef\cup@author@footnotes{%
@@ -765,41 +781,41 @@
   }%
 }
 \newcommand*{\cup@author@fnsymbol@aux}[1]{%
-  \ifnum#1>10 %
-    \expandafter\cup@author@fnsymbol@loop
-  \else
-    \expandafter\cup@author@fnsymbol@symbol
-  \fi
-    {#1}%
+\ifnum#1>10 %
+  \expandafter\cup@author@fnsymbol@loop
+\else
+  \expandafter\cup@author@fnsymbol@symbol
+\fi
+{#1}%
 }
 \newcommand*{\cup@author@fnsymbol@loop}[1]{%
-   \cup@author@fnsymbol@loop@aux@i#1%
+  \cup@author@fnsymbol@loop@aux@i#1%
 }
 \newcommand*{\cup@author@fnsymbol@loop@aux@i}[2]{%
-  \cup@author@fnsymbol@symbol{\ifnum#2=0 10\else #2\fi}%
-  \expandafter\cup@author@fnsymbol@loop@aux@ii\romannumeral #1000Q{}%
-    {\cup@author@fnsymbol@symbol{\ifnum#2=0 10\else #2\fi}}%
+\cup@author@fnsymbol@symbol{\ifnum#2=0 10\else #2\fi}%
+\expandafter\cup@author@fnsymbol@loop@aux@ii\romannumeral #1000Q{}%
+{\cup@author@fnsymbol@symbol{\ifnum#2=0 10\else #2\fi}}%
 }
 \newcommand*{\cup@author@fnsymbol@loop@aux@ii}[1]{%
   \@nameuse{cup@author@fnsymbol@loop@aux@#1}%
 }
 \def\cup@author@fnsymbol@loop@aux@m#1Q#2#3{%
-  \cup@author@fnsymbol@loop@aux@ii#1Q{#2#3}{#3}%
+\cup@author@fnsymbol@loop@aux@ii#1Q{#2#3}{#3}%
 }
 \newcommand*{\cup@author@fnsymbol@loop@aux@Q}[2]{#1}
 \newcommand*{\cup@author@fnsymbol@symbol}[1]{%
   \ifcase #1 *\or
     \dagger\or
-      \ddagger\or
-        \P\or
-          \S\or
-            \|\or
-              \bot\or
-                \#\or
-                  @\or
-                    \triangle\or
-                      \nabla
-    \fi
+    \ddagger\or
+    \P\or
+    \S\or
+    \|\or
+    \bot\or
+    \#\or
+    @\or
+    \triangle\or
+    \nabla
+  \fi
 }
 \newcommand*\cup@address@list{%
   \ifnum\cup@affil@cnt>\z@
@@ -812,7 +828,7 @@
   \ifnum0%
     \ifnum\cup@affil@cnt>\@ne    1\fi
     \ifnum\cup@affil@alt@cnt>\z@ 1\fi
-      >\z@
+    >\z@
     \expandafter\cup@address@list@auxii
   \else
     \@address@i\par
@@ -822,21 +838,21 @@
   \@tempcnta\z@
   \cup@affil@marker@cnt\cup@footnote@cnt
   \loop\ifnum\@tempcnta<\cup@affil@cnt
-    \advance\@tempcnta\@ne
-    \advance\cup@affil@marker@cnt\@ne
-    \cup@author@fnsymbol{\cup@affil@marker@cnt}%
-    \@nameuse{@address@\@roman\@tempcnta}\par% and % TODO handle multiples
+  \advance\@tempcnta\@ne
+  \advance\cup@affil@marker@cnt\@ne
+  \cup@author@fnsymbol{\cup@affil@marker@cnt}%
+  \@nameuse{@address@\@roman\@tempcnta}\par% and % TODO handle multiples
   \repeat
   \@tempcnta\z@
   \loop\ifnum\@tempcnta<\cup@affil@cnt
-    \advance\@tempcnta\@ne
-    \advance\cup@affil@marker@cnt\@ne
-    \cup@ifundefined{@altaffil@\@roman\@tempcnta}
-      {}
-      {%
-        \cup@author@fnsymbol{\cup@affil@marker@cnt}%
-        \@nameuse{@altaffil@\@roman\@tempcnta}\par
-      }%
+  \advance\@tempcnta\@ne
+  \advance\cup@affil@marker@cnt\@ne
+  \cup@ifundefined{@altaffil@\@roman\@tempcnta}
+  {}
+  {%
+    \cup@author@fnsymbol{\cup@affil@marker@cnt}%
+    \@nameuse{@altaffil@\@roman\@tempcnta}\par
+  }%
   \repeat
 }
 \newcommand*\cup@fnsymbol@org{}
@@ -891,16 +907,16 @@
 \newcommand*\cup@email@list@font{}
 \newcommand*\cup@email@list{%
   \begingroup
-    \def\UrlFont{\cup@email@list@font}%
-    \@tempcnta\z@\relax
-    \@tempcntb\z@\relax
-    \cup@email@list@aux
-    \ifnum\@tempcntb=\z@\relax
-      \cup@warning{%
-        No e-mail given:\MessageBreak
-        at lest one author must have a contact e-mail%
-      }%
-    \fi
+  \def\UrlFont{\cup@email@list@font}%
+  \@tempcnta\z@\relax
+  \@tempcntb\z@\relax
+  \cup@email@list@aux
+  \ifnum\@tempcntb=\z@\relax
+    \cup@warning{%
+      No e-mail given:\MessageBreak
+      at lest one author must have a contact e-mail%
+    }%
+  \fi
   \endgroup
 }
 \newcommand*\cup@email@list@aux{%
@@ -912,8 +928,8 @@
         ;
       \fi
       \expandafter\expandafter\expandafter\url\expandafter
-        \expandafter\expandafter{%
-           \csname @email@\@roman\@tempcnta\endcsname
+      \expandafter\expandafter{%
+        \csname @email@\@roman\@tempcnta\endcsname
       }%
     }%
     \expandafter\cup@email@list@aux
@@ -921,22 +937,22 @@
 }
 \newcommand*\cup@number@list{%
   \begingroup
-    \cup@number@list@aux@i{phone}%
-    \let\@tempb\@tempa
-    \cup@number@list@aux@i{fax}%
-    \ifx\@tempa\@empty
-      \let\@tempa\@tempb
-    \else
-      \ifx\@tempb\@empty\else
-        \protected@edef\@tempa{%
-          \@tempb.\space\@tempa
-        }%
-      \fi
+  \cup@number@list@aux@i{phone}%
+  \let\@tempb\@tempa
+  \cup@number@list@aux@i{fax}%
+  \ifx\@tempa\@empty
+    \let\@tempa\@tempb
+  \else
+    \ifx\@tempb\@empty\else
+      \protected@edef\@tempa{%
+        \@tempb.\space\@tempa
+      }%
     \fi
-    \ifx\@tempa\@empty\else
-      \par
-      \@tempa
-    \fi
+  \fi
+  \ifx\@tempa\@empty\else
+    \par
+    \@tempa
+  \fi
   \endgroup
 }
 \newcommand*\cup@number@list@aux@i[1]{%
@@ -1042,25 +1058,25 @@
 \newcommand*\cup@startsection@orig{}
 \let\cup@startsection@orig\@startsection
 \newcommand\cup@startsection[6]{%
- \if@noskipsec \leavevmode \fi
- \par \@tempskipa #4\relax
- \@afterindenttrue
- \ifdim \@tempskipa <\z@ \@tempskipa - 0.4\@tempskipa \@afterindentfalse\fi
- \if@nobreak \everypar{}\else
-     \addpenalty\@secpenalty\addvspace\@tempskipa\fi
- \@ifstar{\@dblarg{\@sect{#1}{\@m}{#3}{#4}{#5}{#6}}}%
-         {\@dblarg{\@sect{#1}{#2}{#3}{#4}{#5}{#6}}}%
+  \if@noskipsec \leavevmode \fi
+  \par \@tempskipa #4\relax
+  \@afterindenttrue
+  \ifdim \@tempskipa <\z@ \@tempskipa - 0.4\@tempskipa \@afterindentfalse\fi
+  \if@nobreak \everypar{}\else
+    \addpenalty\@secpenalty\addvspace\@tempskipa\fi
+  \@ifstar{\@dblarg{\@sect{#1}{\@m}{#3}{#4}{#5}{#6}}}%
+  {\@dblarg{\@sect{#1}{#2}{#3}{#4}{#5}{#6}}}%
 }
 \let\@startsection\cup@startsection
 \newcommand*\cup@startsection@alt[6]{%
   \if@noskipsec \leavevmode \fi
   \par \@tempskipa #4\relax
   \@afterindenttrue
- \ifdim \@tempskipa <\z@ \@tempskipa - 0.4\@tempskipa \@afterindentfalse\fi
- \if@nobreak \everypar{}\else
-     \addpenalty\@secpenalty\addvspace\@tempskipa\fi
+  \ifdim \@tempskipa <\z@ \@tempskipa - 0.4\@tempskipa \@afterindentfalse\fi
+  \if@nobreak \everypar{}\else
+    \addpenalty\@secpenalty\addvspace\@tempskipa\fi
   \@ifstar{\@ssect{#3}{#4}{#5}{#6}}
-          {\@ssect{#3}{#4}{#5}{#6}}%
+  {\@ssect{#3}{#4}{#5}{#6}}%
 }
 \newcommand*\cup@sections@none{%
   \@ifstar{%
@@ -1097,13 +1113,13 @@
 }
 \@onlypreamble\SectionsOn
 \begingroup
-  \toks@=\expandafter{\tableofcontents}
-  \xdef\tableofcontents{%
-    \begingroup
-      \let\noexpand\@startsection\noexpand\cup@startsection@orig
-      \the\toks@
-    \endgroup
-  }
+\toks@=\expandafter{\tableofcontents}
+\xdef\tableofcontents{%
+  \begingroup
+  \let\noexpand\@startsection\noexpand\cup@startsection@orig
+  \the\toks@
+  \endgroup
+}
 \endgroup
 \newenvironment{acknowledgement}{%
   \cup@section*{Acknowledgement}%
@@ -1141,11 +1157,11 @@
   \cup@collect@toks\cup@collect@empty@toks
   \def\cup@collect@begins{b}%
   \begingroup
-    \expandafter\let\csname\@currenvir\endcsname\cup@collect@aux
-    \edef\cup@collect@content{%
-      \expandafter\noexpand\csname\@currenvir\endcsname
-    }%
-    \cup@collect@content
+  \expandafter\let\csname\@currenvir\endcsname\cup@collect@aux
+  \edef\cup@collect@content{%
+    \expandafter\noexpand\csname\@currenvir\endcsname
+  }%
+  \cup@collect@content
 }
 \newcommand*\cup@collect@aux{}
 \long\def\cup@collect@aux#1\end#2{%
@@ -1192,43 +1208,54 @@
   \pretocmd{\cup@author@fnsymbol}{\let\ensuremath\relax}{}{}
   \patchcmd{\cup@author@star@aux}{\else}{,\else}{}{}
   \patchcmd{\cup@author@star@aux}
-    {\ifnum\cup@affil@alt@cnt>\z@\relax}
-    {\ifnum\cup@affil@alt@cnt>\z@\relax,}
-    {}{}
+  {\ifnum\cup@affil@alt@cnt>\z@\relax}
+  {\ifnum\cup@affil@alt@cnt>\z@\relax,}
+  {}{}
   \patchcmd{\cup@author@affil@also@aux}
-    {\cup@author@fnsymbol}
-    {,\cup@author@fnsymbol}
-    {}{}
+  {\cup@author@fnsymbol}
+  {,\cup@author@fnsymbol}
+  {}{}
   \patchcmd{\cup@address@list@auxii}
-    {\cup@author@fnsymbol{\cup@affil@marker@cnt}}
-    {\textsuperscript{\cup@author@fnsymbol{\cup@affil@marker@cnt}}}
-    {}{}
+  {\cup@author@fnsymbol{\cup@affil@marker@cnt}}
+  {\textsuperscript{\cup@author@fnsymbol{\cup@affil@marker@cnt}}}
+  {}{}
 }
 
 \def\cup@journal@name{Journal of Open Aviation Science}
 
 \geometry{
   b5paper,
-  top=2.3cm, bottom=1.6cm, left=1.7cm, right=1.7cm, 
+  top=2.3cm, bottom=1.6cm, left=1.7cm, right=1.7cm,
   headsep=0.8cm
 }
 
-\colorlet{structure@color}{NavyBlue!60!black}
+\definecolor{myblue}{rgb}{0.13,0.2,0.33}
+\definecolor{mygreen1}{rgb}{0,0.26,0.27}
+\definecolor{mygreen2}{rgb}{0.16,0.34,0.15}
+\definecolor{mybrown}{rgb}{0.29,0.09,0.08}
+\definecolor{myorchid}{rgb}{0.3,0.1,0.4}
+\definecolor{myred}{rgb}{0.56,0.09,0.19}
+
+\colorlet{structure@color}{myblue}
 
 \ifx \cup@manuscript \cup@manuscript@rescience
-  \colorlet{structure@color}{Brown!60!black}
+  \colorlet{structure@color}{mybrown}
 \fi
 
 \ifx \cup@manuscript \cup@manuscript@data
-  \colorlet{structure@color}{DarkSeaGreen!40!black}
+  \colorlet{structure@color}{mygreen1}
 \fi
 
 \ifx \cup@manuscript \cup@manuscript@software
-  \colorlet{structure@color}{DarkOrchid!60!black}
+  \colorlet{structure@color}{myorchid}
 \fi
 
 \ifx \cup@manuscript \cup@manuscript@editorial
-  \colorlet{structure@color}{Red!60!black}
+  \colorlet{structure@color}{myred}
+\fi
+
+\ifx \cup@manuscript \cup@manuscript@proceeding
+  \colorlet{structure@color}{mygreen2}
 \fi
 
 \RequirePackage[colorlinks=true]{hyperref}
@@ -1256,7 +1283,7 @@
 
 \patch@numeric@authors
 \patchcmd{\@maketitle}
-  {joas-logo}{joas-logo}{}{}
+{joas-logo}{joas-logo}{}{}
 \let\endnote\footnote
 \let\printendnotes\relax
 \AtEndOfClass{%
