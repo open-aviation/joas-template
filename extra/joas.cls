@@ -162,7 +162,7 @@
 \newcommand*\cup@manuscript@data{data}
 \newcommand*\cup@manuscript@software{software}
 \newcommand*\cup@manuscript@editorial{editorial}
-\newcommand*\cup@manuscript@proceeding{proceeding}
+\newcommand*\cup@manuscript@proceedings{proceedings}
 \newcommand*\cup@layout@preprint{preprint}
 
 \setkeys{cup}{
@@ -523,7 +523,7 @@
   Creative Commons Attribution 4.0 International (CC BY 4.0) licence (\url{https://creativecommons.org/licenses/by/4.0/})
 }
 
-\newcommand*\cup@type@list{article,rescience,data,software,editorial,proceeding}
+\newcommand*\cup@type@list{article,rescience,data,software,editorial,proceedings}
 \newcommand*\cup@type@default{article}
 \newcommand*\cup@type@check{%
   \@tempswafalse
@@ -561,7 +561,7 @@
   \sffamily\bfseries\color{structure@color}
   \MakeUppercase{\convertchar{\cup@manuscript}{-}{ }}
   {
-    \ifx \cup@manuscript \cup@manuscript@proceeding
+    \ifx \cup@manuscript \cup@manuscript@proceedings
       | \emph{\cup@conference}
     \fi
   }
@@ -1254,7 +1254,7 @@
   \colorlet{structure@color}{myred}
 \fi
 
-\ifx \cup@manuscript \cup@manuscript@proceeding
+\ifx \cup@manuscript \cup@manuscript@proceedings
   \colorlet{structure@color}{mygreen2}
 \fi
 
