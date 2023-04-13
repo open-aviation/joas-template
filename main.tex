@@ -1,5 +1,5 @@
 \documentclass[
-  manuscript=proceeding,  %% article (default), rescience, data, software, proceeding
+  manuscript=proceedings,  %% article (default), rescience, data, software, proceedings
   layout=preprint,  %% preprint (for submission) or publish (for publisher only)
   year=20xx,
   volume=x,
@@ -7,25 +7,29 @@
 
 \doi{10.74800/joas.x.xxxx}
 
-% \conference{} only used for proceedings
+% \conference{} command is only used for proceedings
 \conference{The 11th OpenSky Symposium}
 
-\received {1 April 2022}
-\revised  {1 May 2022}
-\accepted {10 May 2022}
-\published{20 May 2022}
+\received {1 April 20xx}
+\revised  {1 May 20xx}
+\accepted {10 May 20xx}
+\published{20 May 20xx}
+
 \editor{Editor Name}
+
 \reviewers{First Reviewer, Second Reviewer, Third Reviewer}
 
 
 % --- blew is the area for authors ---
 
-
-\usepackage[english]{babel}
+% remove the following two packages, and delete all \blindtext commands
+\usepackage[english]{babel} 
 \usepackage{blindtext}
+
 
 % specify the .bib file for references
 \addbibresource{reference.bib} 
+
 
 % Make sure your article tile is within 12 words
 \title{Using a concise title for your article}
@@ -45,7 +49,7 @@
 % maximum five keywords
 \keywords{keyword; keyword one; keywork two} 
 
-% Important, only index abbreviation if a term contains more than two words, and the term is used more than ten times throughout the paper. Otherwise, spell them out in full in the paper.
+% Important: don't over use abbreviations. Only use abbreviation if the term is used more than ten times throughout the paper. Otherwise, write them in full.
 \abbreviations{
     JOAS: Journal of Open Aviation Science, 
     ATM: Air Traffic Managment
