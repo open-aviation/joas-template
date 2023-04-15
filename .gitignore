@@ -1,3 +1,6 @@
+figures/*
+!figures/empty
+
 tmp
 build/pdf/*
 !build/pdf/empty
