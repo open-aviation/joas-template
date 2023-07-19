@@ -565,6 +565,11 @@
       | \emph{\cup@conference}
     \fi
   }
+  {
+    \ifx \cup@layout \cup@layout@preprint
+      (\emph{Pre-print submitted to JOAS})
+    \fi
+  }
   \par
 }
 
