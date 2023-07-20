@@ -47,7 +47,6 @@
 
 \RequirePackage[table,svgnames]{xcolor}
 
-\RequirePackage{lastpage} % For getting the last page in the first page header
 \RequirePackage{enumitem} % For list styling
 \setlist{noitemsep,leftmargin=\parindent}
 \RequirePackage[online]{threeparttable} % For table notes
@@ -586,7 +585,7 @@
 \newpage\vspace*{\dimexpr-\headsep-\headheight\relax}
 \parbox[b]{\dimexpr\textwidth-20mm\relax}{%
 \footnotesize{\journalnamefont\cup@journal@name}
-(\cup@year), {\volumefont\cup@vol}, \thepage--\pageref{LastPage}
+(\cup@year), Vol.{\volumefont\cup@vol}
 \par doi:{\cup@doi}}\hfill\includegraphics[width=20mm]{extra/joas-logo}\par
 \vspace*{\baselineskip}
 {
