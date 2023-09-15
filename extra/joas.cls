@@ -597,7 +597,7 @@
     \ifx \cup@manuscript \cup@manuscript@proceedings
       | \emph{\cup@conference}
     \else
-      \ifx \cup@manuscript \cup@manuscript@proceedings
+      \ifx \cup@manuscript \cup@manuscript@poster
         | \emph{\cup@conference}
       \fi
     \fi
@@ -1280,7 +1280,7 @@
 \definecolor{mybrown}{rgb}{0.29,0.09,0.08}
 \definecolor{myorchid}{rgb}{0.3,0.1,0.4}
 \definecolor{myred}{rgb}{0.56,0.09,0.19}
-\definecolor{mypink}{rgb}{0.87,0.11,0.47}
+\definecolor{mypink}{rgb}{0.5,0.00,0.40}
 
 \colorlet{structure@color}{myblue}
 
