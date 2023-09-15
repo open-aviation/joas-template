@@ -47,6 +47,7 @@
 
 \RequirePackage[table,svgnames]{xcolor}
 
+\RequirePackage{lastpage} % For getting the last page in the first page header
 \RequirePackage{enumitem} % For list styling
 \setlist{noitemsep,leftmargin=\parindent}
 \RequirePackage[online]{threeparttable} % For table notes
@@ -162,6 +163,7 @@
 \newcommand*\cup@manuscript@software{software}
 \newcommand*\cup@manuscript@editorial{editorial}
 \newcommand*\cup@manuscript@proceedings{proceedings}
+\newcommand*\cup@manuscript@poster{poster}
 \newcommand*\cup@layout@preprint{preprint}
 
 \setkeys{cup}{
@@ -522,7 +524,7 @@
   Creative Commons Attribution 4.0 International (CC BY 4.0) licence (\url{https://creativecommons.org/licenses/by/4.0/})
 }
 
-\newcommand*\cup@type@list{article,rescience,data,software,editorial,proceedings}
+\newcommand*\cup@type@list{article,rescience,data,software,editorial,proceedings,poster}
 \newcommand*\cup@type@default{article}
 \newcommand*\cup@type@check{%
   \@tempswafalse
@@ -585,7 +587,7 @@
 \newpage\vspace*{\dimexpr-\headsep-\headheight\relax}
 \parbox[b]{\dimexpr\textwidth-20mm\relax}{%
 \footnotesize{\journalnamefont\cup@journal@name}
-(\cup@year), Vol.{\volumefont\cup@vol}
+(\cup@year), Vol.{\volumefont\cup@vol}, \thepage--\pageref{LastPage}
 \par doi:{\cup@doi}}\hfill\includegraphics[width=20mm]{extra/joas-logo}\par
 \vspace*{\baselineskip}
 {
@@ -594,6 +596,10 @@
   {
     \ifx \cup@manuscript \cup@manuscript@proceedings
       | \emph{\cup@conference}
+    \else
+      \ifx \cup@manuscript \cup@manuscript@proceedings
+        | \emph{\cup@conference}
+      \fi
     \fi
   }
   {
@@ -650,9 +656,12 @@
   \datesize
   \datefont
   \ifcup@dates
-    (Received \cup@recvd; revised \cup@revd; accepted \cup@accptd; first published online \cup@publd) \\
-    (Editor: \cup@editor; open reviewed by: \cup@reviewers) \\
-    \vspace*{\cup@space@post@date}%
+    \ifx \cup@manuscript \cup@manuscript@poster
+    \else
+      (Received \cup@recvd; revised \cup@revd; accepted \cup@accptd; first published online \cup@publd) \\
+      (Editor: \cup@editor; open reviewed by: \cup@reviewers) \\
+      \vspace*{\cup@space@post@date}%
+    \fi
   \fi
   \ifcup@copyright
     \bgroup\let\thefootnote\relax
@@ -1271,6 +1280,7 @@
 \definecolor{mybrown}{rgb}{0.29,0.09,0.08}
 \definecolor{myorchid}{rgb}{0.3,0.1,0.4}
 \definecolor{myred}{rgb}{0.56,0.09,0.19}
+\definecolor{mypink}{rgb}{0.87,0.11,0.47}
 
 \colorlet{structure@color}{myblue}
 
@@ -1294,6 +1304,9 @@
   \colorlet{structure@color}{mygreen2}
 \fi
 
+\ifx \cup@manuscript \cup@manuscript@poster
+  \colorlet{structure@color}{mypink}
+\fi
 \RequirePackage[colorlinks=true]{hyperref}
 
 \Hy@AtBeginDocument{
