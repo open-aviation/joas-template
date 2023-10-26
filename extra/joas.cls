@@ -49,7 +49,8 @@
 
 \RequirePackage{lastpage} % For getting the last page in the first page header
 \RequirePackage{enumitem} % For list styling
-\setlist{noitemsep,leftmargin=\parindent}
+% \setlist{noitemsep,leftmargin=\parindent}
+\setlist{noitemsep,leftmargin=*}
 \RequirePackage[online]{threeparttable} % For table notes
 \let\TPTnoteSettingsOrig\TPTnoteSettings
 \def\TPTnoteSettings{\TPTnoteSettingsOrig\scriptsize}
