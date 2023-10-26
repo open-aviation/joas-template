@@ -588,7 +588,7 @@
 \newpage\vspace*{\dimexpr-\headsep-\headheight\relax}
 \parbox[b]{\dimexpr\textwidth-20mm\relax}{%
 \footnotesize{\journalnamefont\cup@journal@name}
-(\cup@year), Vol.{\volumefont\cup@vol}, \thepage--\pageref{LastPage}
+(\cup@year), Vol.{\volumefont\cup@vol}
 \par doi:{\cup@doi}}\hfill\includegraphics[width=20mm]{extra/joas-logo}\par
 \vspace*{\baselineskip}
 {
