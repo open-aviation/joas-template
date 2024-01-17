@@ -589,13 +589,14 @@
   \newpage\vspace*{\dimexpr-\headsep-\headheight\relax}
   \parbox[b]{\dimexpr\textwidth-20mm\relax}{
     \footnotesize{\journalnamefont\cup@journal@name}
+
     \ifx \cup@layout \cup@layout@publish
       (\cup@year), Vol.{\volumefont\cup@vol}
     \fi
 
     % \par doi:{\cup@doi}} \hfill\includegraphics[width=20mm]{extra/joas-logo}\par
     \ifx \cup@layout \cup@layout@publish
-      \par doi:{\cup@doi}
+      doi:{\cup@doi}
     \else
       ~
     \fi
@@ -666,7 +667,7 @@
       \vspace*{\cup@space@post@email}%
     \fi
   }%
-  \ifx \cup@layout \cup@layout@published
+  \ifx \cup@layout \cup@layout@publish
     {%
       \datesize
       \datefont
