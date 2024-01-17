@@ -589,7 +589,6 @@
   \newpage\vspace*{\dimexpr-\headsep-\headheight\relax}
   \parbox[b]{\dimexpr\textwidth-20mm\relax}{
     \footnotesize{\journalnamefont\cup@journal@name}
-
     \ifx \cup@layout \cup@layout@publish
       (\cup@year), Vol.{\volumefont\cup@vol}
     \fi
