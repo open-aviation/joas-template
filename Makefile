@@ -13,13 +13,13 @@ default:
 
 html:
 	bash tex2html.sh
-	cp ./build/html/main.html ../publish/joas_$(paper_id).html
+	cp ./build/html/main.html ../publish/joas-$(paper_id).html
 
 pdf:
-	pdflatex -synctex=1 -shell-escape main.tex 
+	pdflatex -synctex=1 --shell-escape main.tex 
 	biber main
-	pdflatex -synctex=1 -shell-escape main.tex
-	cp main.pdf ../publish/joas_$(paper_id).pdf
+	pdflatex -synctex=1 --shell-escape main.tex
+	cp main.pdf ../publish/joas-$(paper_id).pdf
 clean:
 	rm -f *.aux *.bbl *.blg *.bcf *.fls *.fdb_latexmk *.idx *.ilg *.ind *.log *.out *.run.xml *.toc
 	find build/html/ -type f -not -name "empty" -delete

@@ -580,96 +580,112 @@
 
 
 \def\@maketitle{%
-\setlength\parindent{\z@}
-\setlength{\parskip}{1pt}
-\ifnum\cup@author@cnt<\z@\relax
-  \cup@warning{No authors defined: At least one author is required}%
-\fi
-\newpage\vspace*{\dimexpr-\headsep-\headheight\relax}
-\parbox[b]{\dimexpr\textwidth-20mm\relax}{%
-\footnotesize{\journalnamefont\cup@journal@name}
-(\cup@year), Vol.{\volumefont\cup@vol}
-\par doi:{\cup@doi}}\hfill\includegraphics[width=20mm]{extra/joas-logo}\par
-\vspace*{\baselineskip}
-{
-  \sffamily\bfseries\color{structure@color}
-  \MakeUppercase{\convertchar{\cup@manuscript}{-}{ }}
-  {
-    \ifx \cup@manuscript \cup@manuscript@proceedings
-      | \emph{\cup@conference}
+  \setlength\parindent{\z@}
+  \setlength{\parskip}{1pt}
+  \ifnum\cup@author@cnt<\z@\relax
+    \cup@warning{No authors defined: At least one author is required}%
+  \fi
+  \newpage\vspace*{\dimexpr-\headsep-\headheight\relax}
+  \parbox[b]{\dimexpr\textwidth-20mm\relax}{
+    \footnotesize{\journalnamefont\cup@journal@name}
+
+    \ifx \cup@layout \cup@layout@published
+      (\cup@year), Vol.{\volumefont\cup@vol}
+    \fi
+
+    % \par doi:{\cup@doi}} \hfill\includegraphics[width=20mm]{extra/joas-logo}\par
+    \par\if \cup@layout \cup@layout@published
+      doi:{\cup@doi}
     \else
-      \ifx \cup@manuscript \cup@manuscript@poster
+      ~
+    \fi
+  }
+  \hfill\includegraphics[width=20mm]{extra/joas-logo}\par
+
+
+  \vspace*{\baselineskip}
+  {
+    \sffamily\bfseries\color{structure@color}
+    \MakeUppercase{\convertchar{\cup@manuscript}{-}{ }}
+    {
+      \ifx \cup@manuscript \cup@manuscript@proceedings
         | \emph{\cup@conference}
+      \else
+        \ifx \cup@manuscript \cup@manuscript@poster
+          | \emph{\cup@conference}
+        \fi
       \fi
-    \fi
-  }
-  {
-    \ifx \cup@layout \cup@layout@preprint
-      (\emph{Pre-print submitted to JOAS})
-    \fi
-  }
-  \par
-}
-
-
-
-\vspace*{\cup@space@pre@title}%
-
-
-{%
-  \titlefont
-  \titlesize
-  \let\@fnsymbol\cup@author@fnsymbol
-  \let\footnote@org\footnote
-  \let\footnote\cup@title@footnote
-  \@title
-  \cup@title@footnote@check
-  \global\cup@footnote@cnt\c@footnote
-  \@maketitle@title@hook
-  \par
-}%
-\vspace*{\cup@space@post@title}%
-{%
-  \authorsize
-  \authorfont
-  %\frenchspacing
-  \cup@author@list
-  \par
-}%
-\vspace*{\cup@space@post@author}%
-{%
-  \affilsize
-  \affilfont
-  \cup@address@list
-  \par
-}%
-\vspace*{\cup@space@post@address}%
-{%
-  \emailsize
-  \emailfont
-  \ifcup@email
-    \expandafter\cup@contact@details
+    }
+    {
+      \ifx \cup@layout \cup@layout@preprint
+        (\emph{Pre-print})
+      \fi
+    }
     \par
-    \vspace*{\cup@space@post@email}%
-  \fi
-}%
-{%
-  \datesize
-  \datefont
-  \ifcup@dates
-    \ifx \cup@manuscript \cup@manuscript@poster
-    \else
-      (Received \cup@recvd; revised \cup@revd; accepted \cup@accptd; first published online \cup@publd) \\
-      (Editor: \cup@editor; open reviewed by: \cup@reviewers) \\
-      \vspace*{\cup@space@post@date}%
+  }
+
+
+
+  \vspace*{\cup@space@pre@title}%
+
+
+  {%
+    \titlefont
+    \titlesize
+    \let\@fnsymbol\cup@author@fnsymbol
+    \let\footnote@org\footnote
+    \let\footnote\cup@title@footnote
+    \@title
+    \cup@title@footnote@check
+    \global\cup@footnote@cnt\c@footnote
+    \@maketitle@title@hook
+    \par
+  }%
+  \vspace*{\cup@space@post@title}%
+  {%
+    \authorsize
+    \authorfont
+    %\frenchspacing
+    \cup@author@list
+    \par
+  }%
+  \vspace*{\cup@space@post@author}%
+  {%
+    \affilsize
+    \affilfont
+    \cup@address@list
+    \par
+  }%
+  \vspace*{\cup@space@post@address}%
+  {%
+    \emailsize
+    \emailfont
+    \ifcup@email
+      \expandafter\cup@contact@details
+      \par
+      \vspace*{\cup@space@post@email}%
     \fi
+  }%
+  \ifx \cup@layout \cup@layout@published
+    {%
+      \datesize
+      \datefont
+      \ifcup@dates
+        \ifx \cup@manuscript \cup@manuscript@poster
+          \emph{(This poster paper is not peer reviewed.)} \\
+        \else
+          (Received on \cup@recvd; revised on \cup@revd; accepted on \cup@accptd; first published online on \cup@publd) \\
+          (Editor: \cup@editor; open reviewed by: \cup@reviewers) \\
+          \vspace*{\cup@space@post@date}%
+        \fi
+      \fi
+      \ifcup@copyright
+        \bgroup\let\thefootnote\relax
+        \footnote{\cup@copyright@notice}
+        \egroup
+      \fi
+    }%
   \fi
-  \ifcup@copyright
-    \bgroup\let\thefootnote\relax
-    \footnote{\cup@copyright@notice}
-    \egroup
-  \fi
-}%
 }
 \newcommand*\@maketitle@title@hook{}
 \newcommand*\cup@maketitle@reproduce{}
