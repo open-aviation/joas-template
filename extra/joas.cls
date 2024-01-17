@@ -166,6 +166,7 @@
 \newcommand*\cup@manuscript@proceedings{proceedings}
 \newcommand*\cup@manuscript@poster{poster}
 \newcommand*\cup@layout@preprint{preprint}
+\newcommand*\cup@layout@publish{publish}
 
 \setkeys{cup}{
   articletitle,
@@ -588,14 +589,13 @@
   \newpage\vspace*{\dimexpr-\headsep-\headheight\relax}
   \parbox[b]{\dimexpr\textwidth-20mm\relax}{
     \footnotesize{\journalnamefont\cup@journal@name}
-
-    \ifx \cup@layout \cup@layout@published
+    \ifx \cup@layout \cup@layout@publish
       (\cup@year), Vol.{\volumefont\cup@vol}
     \fi
 
     % \par doi:{\cup@doi}} \hfill\includegraphics[width=20mm]{extra/joas-logo}\par
-    \par\if \cup@layout \cup@layout@published
-      doi:{\cup@doi}
+    \ifx \cup@layout \cup@layout@publish
+      \par doi:{\cup@doi}
     \else
       ~
     \fi
