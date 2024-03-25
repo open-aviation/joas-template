@@ -17,14 +17,23 @@
   $endif$
 
   <link rel="preconnect" href="https://fonts.gstatic.com">
+
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet"> 
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
 
   <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"
     integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous">
   </script>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" 
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script crossorigin="anonymous" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"></script>
 
   <style>
     body {
@@ -62,6 +71,7 @@
       padding: 0 3px;
     }
 
+    pre {text-align:left !important}
     pre > code{padding: 0 !important}
 
     .paper h1 {
@@ -96,6 +106,11 @@
     .paper h3:before {
       content: counter(h1counter) "." counter(h2counter) "." counter(h3counter) ".\0000a0\0000a0";
       counter-increment: h3counter;
+    }
+
+    .paper figure img{
+      width: auto;
+      max-width: 400px;
     }
 
 
@@ -163,8 +178,13 @@ $endfor$
     </div>
   </header>
 
+  <div class="mb-3 p-3 bg-warning">
+    This web version is auto-generated from the LaTeX source and may not include some elements.
+    Check the PDF version for more details.
+  </div>
+
   <div class="row">
-    <div class="col-lg-3">
+    <div class="col col-lg-3">
       $if(toc)$
       <nav id="$idprefix$TOC">
         <h4>Sections</h4>
@@ -173,7 +193,7 @@ $endfor$
       $endif$
     </div>
 
-    <div class="col-lg-9 paper">
+    <div class="col col-lg-9 paper">
       <h4>Abstract</h4>
       <div class="abstract mb-3 p-3 bg-light">
         $abstract$
@@ -188,6 +208,31 @@ $endfor$
     </div>
   </footer>
 </div>
+
+
+<!-- Bootstrap Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <img id="modalImage" src="" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    jQuery(function () {
+        jQuery("figure>img").each(function () {
+            jQuery(this).on("click", function () {
+                jQuery("#modalImage").attr("src", this.src);
+                jQuery("#myModal").modal("show");
+            });
+        });
+    });
+</script>
+
 
 </body>
 </html>

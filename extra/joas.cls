@@ -49,7 +49,8 @@
 
 \RequirePackage{lastpage} % For getting the last page in the first page header
 \RequirePackage{enumitem} % For list styling
-\setlist{noitemsep,leftmargin=\parindent}
+% \setlist{noitemsep,leftmargin=\parindent}
+\setlist{noitemsep,leftmargin=*}
 \RequirePackage[online]{threeparttable} % For table notes
 \let\TPTnoteSettingsOrig\TPTnoteSettings
 \def\TPTnoteSettings{\TPTnoteSettingsOrig\scriptsize}
@@ -163,7 +164,9 @@
 \newcommand*\cup@manuscript@software{software}
 \newcommand*\cup@manuscript@editorial{editorial}
 \newcommand*\cup@manuscript@proceedings{proceedings}
+\newcommand*\cup@manuscript@poster{poster}
 \newcommand*\cup@layout@preprint{preprint}
+\newcommand*\cup@layout@publish{publish}
 
 \setkeys{cup}{
   articletitle,
@@ -523,7 +526,7 @@
   Creative Commons Attribution 4.0 International (CC BY 4.0) licence (\url{https://creativecommons.org/licenses/by/4.0/})
 }
 
-\newcommand*\cup@type@list{article,rescience,data,software,editorial,proceedings}
+\newcommand*\cup@type@list{article,rescience,data,software,editorial,proceedings,poster}
 \newcommand*\cup@type@default{article}
 \newcommand*\cup@type@check{%
   \@tempswafalse
@@ -541,89 +544,148 @@
   \fi
 }
 
+% For orcid symbol without lualatex
+% Copy of orcidlinks.sty / https://github.com/duetosymmetry/orcidlink-LaTeX-command
+\RequirePackage{tikz}
+\usetikzlibrary{svg.path}
+
+\definecolor{orcidlogocol}{HTML}{A6CE39}
+\tikzset{
+  orcidlogo/.pic={
+      \fill[orcidlogocol] svg{M256,128c0,70.7-57.3,128-128,128C57.3,256,0,198.7,0,128C0,57.3,57.3,0,128,0C198.7,0,256,57.3,256,128z};
+      \fill[white] svg{M86.3,186.2H70.9V79.1h15.4v48.4V186.2z}
+      svg{M108.9,79.1h41.6c39.6,0,57,28.3,57,53.6c0,27.5-21.5,53.6-56.8,53.6h-41.8V79.1z M124.3,172.4h24.5c34.9,0,42.9-26.5,42.9-39.7c0-21.5-13.7-39.7-43.7-39.7h-23.7V172.4z}
+      svg{M88.7,56.8c0,5.5-4.5,10.1-10.1,10.1c-5.6,0-10.1-4.6-10.1-10.1c0-5.6,4.5-10.1,10.1-10.1C84.2,46.7,88.7,51.3,88.7,56.8z};
+    }
+}
+%% Reciprocal of the height of the svg whose source is above.  The
+%% original generates a 256pt high graphic; this macro holds 1/256.
+\newcommand{\@OrigHeightRecip}{0.00390625}
+%% We will compute the current X height to make the logo the right height
+\newlength{\@curXheight}
+
+\DeclareRobustCommand\orcidlink[1]{%
+  \texorpdfstring{%
+    \setlength{\@curXheight}{\fontcharht\font`X}%
+    \href{https://orcid.org/#1}{\XeTeXLinkBox{\mbox{%
+          \begin{tikzpicture}[yscale=-\@OrigHeightRecip*\@curXheight,
+              xscale=\@OrigHeightRecip*\@curXheight,transform shape]
+            \pic{orcidlogo};
+          \end{tikzpicture}%
+        }}}}{}}
+
+\newcommand{\orcid}[1]{\orcidlink{#1}}
+
 
 \cup@type@check
 
 
 \def\@maketitle{%
-\setlength\parindent{\z@}
-\setlength{\parskip}{1pt}
-\ifnum\cup@author@cnt<\z@\relax
-  \cup@warning{No authors defined: At least one author is required}%
-\fi
-\newpage\vspace*{\dimexpr-\headsep-\headheight\relax}
-\parbox[b]{\dimexpr\textwidth-20mm\relax}{%
-\footnotesize{\journalnamefont\cup@journal@name}
-(\cup@year), {\volumefont\cup@vol}, \thepage--\pageref{LastPage}
-\par doi:{\cup@doi}}\hfill\includegraphics[width=20mm]{extra/joas-logo}\par
-\vspace*{\baselineskip}
-{
-  \sffamily\bfseries\color{structure@color}
-  \MakeUppercase{\convertchar{\cup@manuscript}{-}{ }}
-  {
-    \ifx \cup@manuscript \cup@manuscript@proceedings
-      | \emph{\cup@conference}
+  \setlength\parindent{\z@}
+  \setlength{\parskip}{1pt}
+  \ifnum\cup@author@cnt<\z@\relax
+    \cup@warning{No authors defined: At least one author is required}%
+  \fi
+  \newpage\vspace*{\dimexpr-\headsep-\headheight\relax}
+  \parbox[b]{\dimexpr\textwidth-20mm\relax}{
+    \footnotesize{\journalnamefont\cup@journal@name}
+    \ifx \cup@layout \cup@layout@publish
+      (\cup@year), Vol.{\volumefont\cup@vol}
+    \fi
+
+    % \par doi:{\cup@doi}} \hfill\includegraphics[width=20mm]{extra/joas-logo}\par
+    \ifx \cup@layout \cup@layout@publish
+      doi:{\cup@doi}
+    \else
+      ~
     \fi
   }
-  \par
-}
+  \hfill\includegraphics[width=20mm]{extra/joas-logo}\par
 
 
-
-\vspace*{\cup@space@pre@title}%
-
-
-{%
-  \titlefont
-  \titlesize
-  \let\@fnsymbol\cup@author@fnsymbol
-  \let\footnote@org\footnote
-  \let\footnote\cup@title@footnote
-  \@title
-  \cup@title@footnote@check
-  \global\cup@footnote@cnt\c@footnote
-  \@maketitle@title@hook
-  \par
-}%
-\vspace*{\cup@space@post@title}%
-{%
-  \authorsize
-  \authorfont
-  %\frenchspacing
-  \cup@author@list
-  \par
-}%
-\vspace*{\cup@space@post@author}%
-{%
-  \affilsize
-  \affilfont
-  \cup@address@list
-  \par
-}%
-\vspace*{\cup@space@post@address}%
-{%
-  \emailsize
-  \emailfont
-  \ifcup@email
-    \expandafter\cup@contact@details
+  \vspace*{\baselineskip}
+  {
+    \sffamily\bfseries\color{structure@color}
+    \MakeUppercase{\convertchar{\cup@manuscript}{-}{ }}
+    {
+      \ifx \cup@manuscript \cup@manuscript@proceedings
+        | \emph{\cup@conference}
+      \else
+        \ifx \cup@manuscript \cup@manuscript@poster
+          | \emph{\cup@conference}
+        \fi
+      \fi
+    }
+    {
+      \ifx \cup@layout \cup@layout@preprint
+        (\emph{Pre-print})
+      \fi
+    }
     \par
-    \vspace*{\cup@space@post@email}%
+  }
+
+
+
+  \vspace*{\cup@space@pre@title}%
+
+
+  {%
+    \titlefont
+    \titlesize
+    \let\@fnsymbol\cup@author@fnsymbol
+    \let\footnote@org\footnote
+    \let\footnote\cup@title@footnote
+    \@title
+    \cup@title@footnote@check
+    \global\cup@footnote@cnt\c@footnote
+    \@maketitle@title@hook
+    \par
+  }%
+  \vspace*{\cup@space@post@title}%
+  {%
+    \authorsize
+    \authorfont
+    %\frenchspacing
+    \cup@author@list
+    \par
+  }%
+  \vspace*{\cup@space@post@author}%
+  {%
+    \affilsize
+    \affilfont
+    \cup@address@list
+    \par
+  }%
+  \vspace*{\cup@space@post@address}%
+  {%
+    \emailsize
+    \emailfont
+    \ifcup@email
+      \expandafter\cup@contact@details
+      \par
+      \vspace*{\cup@space@post@email}%
+    \fi
+  }%
+  \ifx \cup@layout \cup@layout@publish
+    {%
+      \datesize
+      \datefont
+      \ifcup@dates
+        \ifx \cup@manuscript \cup@manuscript@poster
+          \emph{(This poster paper is not peer reviewed.)} \\
+        \else
+          (Received: \cup@recvd; Revised: \cup@revd; Accepted: \cup@accptd; Published: \cup@publd) \\
+          (Editor: \cup@editor; Reviewers: \cup@reviewers) \\
+          \vspace*{\cup@space@post@date}%
+        \fi
+      \fi
+      \ifcup@copyright
+        \bgroup\let\thefootnote\relax
+        \footnote{\cup@copyright@notice}
+        \egroup
+      \fi
+    }%
   \fi
-}%
-{%
-  \datesize
-  \datefont
-  \ifcup@dates
-    (Received \cup@recvd; revised \cup@revd; accepted \cup@accptd; first published online \cup@publd) \\
-    (Editor: \cup@editor; open reviewed by: \cup@reviewers) \\
-    \vspace*{\cup@space@post@date}%
-  \fi
-  \ifcup@copyright
-    \bgroup\let\thefootnote\relax
-    \footnote{\cup@copyright@notice}
-    \egroup
-  \fi
-}%
 }
 \newcommand*\@maketitle@title@hook{}
 \newcommand*\cup@maketitle@reproduce{}
@@ -1235,6 +1297,7 @@
 \definecolor{mybrown}{rgb}{0.29,0.09,0.08}
 \definecolor{myorchid}{rgb}{0.3,0.1,0.4}
 \definecolor{myred}{rgb}{0.56,0.09,0.19}
+\definecolor{mypink}{rgb}{0.5,0.00,0.40}
 
 \colorlet{structure@color}{myblue}
 
@@ -1258,6 +1321,9 @@
   \colorlet{structure@color}{mygreen2}
 \fi
 
+\ifx \cup@manuscript \cup@manuscript@poster
+  \colorlet{structure@color}{mypink}
+\fi
 \RequirePackage[colorlinks=true]{hyperref}
 
 \Hy@AtBeginDocument{
@@ -1300,6 +1366,9 @@
 \RequirePackage[backend=biber,style=numeric,maxbibnames=10,sorting=none]{biblatex}
 
 \RequirePackage{booktabs}
+
+\RequirePackage{enumitem}
+\setlist[itemize]{itemsep=0.5em}
 
 
 \SectionNumbersOn
