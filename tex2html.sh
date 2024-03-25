@@ -11,31 +11,35 @@ pandoc main.tex -t json | python extra/joas_filter.py | pandoc -f json  \
   --variable editat=main \
   --extract-media build/html
 
+# remove line break between embed and src
+sed -i ':a;N;$!ba;s/embed\n\s*/embed /g' build/html/main.html
+
+# replace embed pdf figure with png
 sed -i 's/embed.*\/\(.*\)pdf/img src="build\/html\/figures\/\1png/g' build/html/main.html;
 
 
 find build/html/figures -type f -name '*.pdf' -print0 |
   while IFS= read -r -d '' fpdf; do 
     fpng=${fpdf%.*}.png
-    convert -density 200 $fpdf -colorspace RGB -resize 800x800^ ${fpdf%.*}.png
+    convert -density 200 $fpdf -colorspace RGB -resize "800x800>^" ${fpdf%.*}.png
   done
   
 find build/html/figures -type f -name '*.svg' -print0 |
   while IFS= read -r -d '' fsvg; do 
     fpng=${fsvg%.*}.png
-    convert -density 200 $fsvg -colorspace RGB -resize 800x800^ ${fsvg%.*}.png
+    convert -density 200 $fsvg -colorspace RGB -resize "800x800>^" ${fsvg%.*}.png
   done
 
 find build/html/figures -type f -name '*.jpg' -print0 |
   while IFS= read -r -d '' fjpg; do 
     fpng=${fjpg%.*}.png
-    convert -density 200 $fjpg -colorspace RGB -resize 800x800^ ${fjpg%.*}.png
+    convert -density 200 $fjpg -colorspace RGB -resize "800x800>^" ${fjpg%.*}.png
   done
 
 find build/html/figures -type f -name '*.png' -print0 |
   while IFS= read -r -d '' fpng; do 
     fpng=${fpng%.*}.png
-    convert -density 200 $fpng -colorspace RGB -resize 800x800^ ${fpng%.*}.png
+    convert -density 200 $fpng -colorspace RGB -resize "800x800>^" ${fpng%.*}.png
   done
 
 
@@ -53,4 +57,7 @@ do
   echo "s|$img_orign|data:image/png;base64,$(cat tmp.b64)|g" > tmp.sed
   # Run the sed script on the HTML file
   sed -i -f tmp.sed build/html/main.html
+  
+  rm tmp.sed
+  rm tmp.b64
 done

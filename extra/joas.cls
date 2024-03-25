@@ -674,8 +674,8 @@
         \ifx \cup@manuscript \cup@manuscript@poster
           \emph{(This poster paper is not peer reviewed.)} \\
         \else
-          (Received on \cup@recvd; revised on \cup@revd; accepted on \cup@accptd; first published online on \cup@publd) \\
-          (Editor: \cup@editor; open reviewed by: \cup@reviewers) \\
+          (Received: \cup@recvd; Revised: \cup@revd; Accepted: \cup@accptd; Published: \cup@publd) \\
+          (Editor: \cup@editor; Reviewers: \cup@reviewers) \\
           \vspace*{\cup@space@post@date}%
         \fi
       \fi
@@ -1366,6 +1366,9 @@
 \RequirePackage[backend=biber,style=numeric,maxbibnames=10,sorting=none]{biblatex}
 
 \RequirePackage{booktabs}
+
+\RequirePackage{enumitem}
+\setlist[itemize]{itemsep=0.5em}
 
 
 \SectionNumbersOn
