@@ -179,8 +179,8 @@ $endfor$
   </header>
 
   <div class="mb-3 p-3 bg-warning">
-    This web version is auto-generated from the LaTeX source and may not include some elements.
-    Check the PDF version for more details.
+    This web version is automatically generated from the LaTeX source and may not include all elements. 
+    For complete details, please refer to the PDF version.
   </div>
 
   <div class="row">
