@@ -7,7 +7,7 @@ pandoc main.tex -t json | python extra/joas_filter.py | pandoc -f json  \
   --citeproc \
   --bibliography=reference.bib \
   --csl=extra/acm-siggraph.csl \
-  --mathjax \
+  --mathml \
   --variable editat=main \
   --extract-media build/html
 
@@ -21,25 +21,25 @@ sed -i 's/embed.*\/\(.*\)pdf/img src="build\/html\/figures\/\1png/g' build/html/
 find build/html/figures -type f -name '*.pdf' -print0 |
   while IFS= read -r -d '' fpdf; do 
     fpng=${fpdf%.*}.png
-    convert -density 200 $fpdf -colorspace RGB -resize "800x800>^" ${fpdf%.*}.png
+    convert $fpdf  -resize "800x800>^" ${fpdf%.*}.png
   done
   
 find build/html/figures -type f -name '*.svg' -print0 |
   while IFS= read -r -d '' fsvg; do 
     fpng=${fsvg%.*}.png
-    convert -density 200 $fsvg -colorspace RGB -resize "800x800>^" ${fsvg%.*}.png
+    convert $fsvg  -resize "800x800>^" ${fsvg%.*}.png
   done
 
 find build/html/figures -type f -name '*.jpg' -print0 |
   while IFS= read -r -d '' fjpg; do 
     fpng=${fjpg%.*}.png
-    convert -density 200 $fjpg -colorspace RGB -resize "800x800>^" ${fjpg%.*}.png
+    convert $fjpg  -resize "800x800>^" ${fjpg%.*}.png
   done
 
 find build/html/figures -type f -name '*.png' -print0 |
   while IFS= read -r -d '' fpng; do 
     fpng=${fpng%.*}.png
-    convert -density 200 $fpng -colorspace RGB -resize "800x800>^" ${fpng%.*}.png
+    convert $fpng  -resize "800x800>^" ${fpng%.*}.png
   done
 
 
