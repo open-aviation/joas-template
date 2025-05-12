@@ -20,81 +20,201 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet"> 
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-
-
-  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js"
-    integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous">
-  </script>
-
-  <script crossorigin="anonymous" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-      crossorigin="anonymous"></script>
-
   <style>
+    /* --- Optimized Minimal CSS for Layout, Grid, Modal, and Utilities --- */
+    :root {
+      --primary: #0d6efd;
+      --warning: #fff3cd;
+      --light: #f8f9fa;
+      --text: #212529;
+      --container-max: 900px;
+      --gutter: 15px;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto Slab', serif;
+      background: #fff;
+      color: var(--text);
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+    .container {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+    /* --- Bootstrap-like Grid System --- */
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      margin-right: calc(-1 * var(--gutter));
+      margin-left: calc(-1 * var(--gutter));
+    }
+    .col, [class^="col-"] {
+      flex: 1 0 0%;
+      max-width: 100%;
+      padding-right: var(--gutter);
+      padding-left: var(--gutter);
+      box-sizing: border-box;
+    }
+    /* Responsive columns */
+    .col-1 { flex: 0 0 8.3333%; max-width: 8.3333%; }
+    .col-2 { flex: 0 0 16.6667%; max-width: 16.6667%; }
+    .col-3 { flex: 0 0 25%; max-width: 25%; }
+    .col-4 { flex: 0 0 33.3333%; max-width: 33.3333%; }
+    .col-5 { flex: 0 0 41.6667%; max-width: 41.6667%; }
+    .col-6 { flex: 0 0 50%; max-width: 50%; }
+    .col-7 { flex: 0 0 58.3333%; max-width: 58.3333%; }
+    .col-8 { flex: 0 0 66.6667%; max-width: 66.6667%; }
+    .col-9 { flex: 0 0 75%; max-width: 75%; }
+    .col-10 { flex: 0 0 83.3333%; max-width: 83.3333%; }
+    .col-11 { flex: 0 0 91.6667%; max-width: 91.6667%; }
+    .col-12 { flex: 0 0 100%; max-width: 100%; }
+    @media (min-width: 992px) {
+      .col-lg-1 { flex: 0 0 8.3333%; max-width: 8.3333%; }
+      .col-lg-2 { flex: 0 0 16.6667%; max-width: 16.6667%; }
+      .col-lg-3 { flex: 0 0 25%; max-width: 25%; }
+      .col-lg-4 { flex: 0 0 33.3333%; max-width: 33.3333%; }
+      .col-lg-5 { flex: 0 0 41.6667%; max-width: 41.6667%; }
+      .col-lg-6 { flex: 0 0 50%; max-width: 50%; }
+      .col-lg-7 { flex: 0 0 58.3333%; max-width: 58.3333%; }
+      .col-lg-8 { flex: 0 0 66.6667%; max-width: 66.6667%; }
+      .col-lg-9 { flex: 0 0 75%; max-width: 75%; }
+      .col-lg-10 { flex: 0 0 83.3333%; max-width: 83.3333%; }
+      .col-lg-11 { flex: 0 0 91.6667%; max-width: 91.6667%; }
+      .col-lg-12 { flex: 0 0 100%; max-width: 100%; }
+    }
+    @media (min-width: 768px) and (max-width: 991.98px) {
+      .col-md-1 { flex: 0 0 8.3333%; max-width: 8.3333%; }
+      .col-md-2 { flex: 0 0 16.6667%; max-width: 16.6667%; }
+      .col-md-3 { flex: 0 0 25%; max-width: 25%; }
+      .col-md-4 { flex: 0 0 33.3333%; max-width: 33.3333%; }
+      .col-md-5 { flex: 0 0 41.6667%; max-width: 41.6667%; }
+      .col-md-6 { flex: 0 0 50%; max-width: 50%; }
+      .col-md-7 { flex: 0 0 58.3333%; max-width: 58.3333%; }
+      .col-md-8 { flex: 0 0 66.6667%; max-width: 66.6667%; }
+      .col-md-9 { flex: 0 0 75%; max-width: 75%; }
+      .col-md-10 { flex: 0 0 83.3333%; max-width: 83.3333%; }
+      .col-md-11 { flex: 0 0 91.6667%; max-width: 91.6667%; }
+      .col-md-12 { flex: 0 0 100%; max-width: 100%; }
+    }
+    @media (max-width: 767.98px) {
+      .col-sm-1 { flex: 0 0 8.3333%; max-width: 8.3333%; }
+      .col-sm-2 { flex: 0 0 16.6667%; max-width: 16.6667%; }
+      .col-sm-3 { flex: 0 0 25%; max-width: 25%; }
+      .col-sm-4 { flex: 0 0 33.3333%; max-width: 33.3333%; }
+      .col-sm-5 { flex: 0 0 41.6667%; max-width: 41.6667%; }
+      .col-sm-6 { flex: 0 0 50%; max-width: 50%; }
+      .col-sm-7 { flex: 0 0 58.3333%; max-width: 58.3333%; }
+      .col-sm-8 { flex: 0 0 66.6667%; max-width: 66.6667%; }
+      .col-sm-9 { flex: 0 0 75%; max-width: 75%; }
+      .col-sm-10 { flex: 0 0 83.3333%; max-width: 83.3333%; }
+      .col-sm-11 { flex: 0 0 91.6667%; max-width: 91.6667%; }
+      .col-sm-12 { flex: 0 0 100%; max-width: 100%; }
+    }
+    /* --- End Bootstrap-like Grid System --- */
+    .d-flex { display: flex; }
+    .flex-row { flex-direction: row; }
+    .align-items-end { align-items: flex-end; }
+    .mb-1 { margin-bottom: 0.25rem; }
+    .mb-3 { margin-bottom: 1rem; }
+    .p-3 { padding: 1rem; }
+    .bg-warning { background: var(--warning); }
+    .bg-light { background: var(--light); }
+    .text-center { text-align: center; }
+    .text-right { text-align: right; }
+    .modal {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      display: none;
+      z-index: 1050;
+      background: rgba(0,0,0,0.5);
+      align-items: center;
+      justify-content: center;
+    }
+    .modal.show { display: flex; }
+    .modal-dialog {
+      background: #fff;
+      border-radius: 6px;
+      max-width: 90vw;
+      max-height: 90vh;
+      margin: auto;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-content { background: #fff; border-radius: 6px; padding: 1rem; }
+    .modal-body { text-align: center; }
+    .img-fluid { max-width: 100%; height: auto; }
+    .modal-backdrop {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 1040;
+    }
+    .fade { transition: opacity 0.15s linear; }
+    .show { opacity: 1; }
+    .modal-open { overflow: hidden; }
+    /* Sticky sidebar for TOC */
+    .col-lg-3 nav {
+      position: sticky;
+      top: 20px;
+      align-self: flex-start;
+    }
+    /* Table, figure, and other styles remain as before */
     body {
       font-family: 'Roboto Slab', serif !important;
       padding-top: 20px;
     }
-
+    a {
+      color: var(--primary);
+      text-decoration: underline;
+    }
     header {
       padding-bottom: 15px;
       margin-bottom: 20px;
       border-bottom: 1px dashed #ccc;
     }
-
     footer {
       padding: 15px;
       margin-top: 20px;
       border-top: 1px dashed #ccc;
     }
-
     .title {font-size: 2em}
     .abstract p {margin:0}
-
     nav ul {padding-left: 20px; font-size: 90%}
-
     pre {
       background: #f5f5f5;
       padding: 10px;
       line-height: 1.15 !important;
       font-size: 80% !important;
     }
-
     code {
       background: #f5f5f5;
       color: #000;
       padding: 0 3px;
     }
-
     pre {text-align:left !important}
     pre > code{padding: 0 !important}
-
     .paper h1 {
       font-size: 2em;
       margin-top: 0.2em;
       border-bottom: 1px dashed #ddd;
       padding-bottom: 5px;
     }
-
     .paper h2{
       font-size: 1.7em;
       margin-top: 1em;
     }
-
     .paper h3 {
       font-size: 1.5em;
       margin-top: 1em;
     }
-
     .paper {counter-reset: h1counter}
     .paper h1 {counter-reset: h2counter}
     .paper h2 {counter-reset: h3counter}
-
     .paper h1:before {
       content: counter(h1counter) ".\0000a0\0000a0";
       counter-increment: h1counter;
@@ -107,39 +227,34 @@
       content: counter(h1counter) "." counter(h2counter) "." counter(h3counter) ".\0000a0\0000a0";
       counter-increment: h3counter;
     }
-
-    .paper figure img{
+    .paper figure img,
+    .paper figure * img{
       width: auto;
       max-width: 400px;
     }
-
-
+    figure img, figure * img, p > img {
+      cursor: pointer;
+    }
     table {
       margin: 20px auto;
       border: 1px solid #aaa;
       font-size: 90%;
       min-width: 70%;
     }
-
     table thead {background: #f3f3f3}
     table caption {text-align: center}
     table th, table td {padding: 3px 6px}
     table th {border-bottom: 2px solid #aaa}
-
     table tr.even {background: #fbfbfb}
     table tr:hover{background: #eee}
-
     figure > img, p > img {margin: 10px auto}
     figure {margin: 20px 0; text-align: center}
     figcaption {margin: 10px 0;color: #6c757d}
-
     li > p {margin-bottom: 3px}
-
     .citation {
       background-color: #eee;
       font-size: 0.9em;
     }
-
     .references::before{
       content: "References:";
       display: block;
@@ -147,16 +262,13 @@
       font-size: 1.1em;
       font-weight: bold;
     }
-
     .references .csl-entry {
       font-size: 80%;
       margin-bottom: 10px;
       padding-left: 5px;
       border-left: 3px solid #eee;
     }
-
     .references .csl-entry:hover {background: #eee}
-
   </style>
 
 </head>
@@ -184,7 +296,7 @@ $endfor$
   </div>
 
   <div class="row">
-    <div class="col col-lg-3">
+    <div class="col col-lg-3 col-md-4 col-sm-12">
       $if(toc)$
       <nav id="$idprefix$TOC">
         <h4>Sections</h4>
@@ -193,7 +305,7 @@ $endfor$
       $endif$
     </div>
 
-    <div class="col col-lg-9 paper">
+    <div class="col paper">
       <h4>Abstract</h4>
       <div class="abstract mb-3 p-3 bg-light">
         $abstract$
@@ -210,7 +322,7 @@ $endfor$
 </div>
 
 
-<!-- Bootstrap Modal -->
+<!-- Image pop-out -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
@@ -223,16 +335,46 @@ $endfor$
 
 
 <script>
-    jQuery(function () {
-        jQuery("figure>img").each(function () {
-            jQuery(this).on("click", function () {
-                jQuery("#modalImage").attr("src", this.src);
-                jQuery("#myModal").modal("show");
-            });
-        });
-    });
-</script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var modal = document.getElementById('myModal');
+    var modalImage = document.getElementById('modalImage');
+    var images = document.querySelectorAll('figure img, figure * img');
+    var body = document.body;
 
+    images.forEach(function (img) {
+      img.addEventListener('click', function () {
+        modalImage.src = this.src;
+        modal.classList.add('show');
+        modal.style.display = 'block';
+        body.classList.add('modal-open');
+        // Add backdrop
+        var backdrop = document.createElement('div');
+        backdrop.className = 'modal-backdrop fade show';
+        backdrop.id = 'modal-backdrop';
+        document.body.appendChild(backdrop);
+      });
+    });
+
+    // Close modal on click outside image or on Escape key
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.classList.contains('show')) {
+        closeModal();
+      }
+    });
+    function closeModal() {
+      modal.classList.remove('show');
+      modal.style.display = 'none';
+      body.classList.remove('modal-open');
+      var backdrop = document.getElementById('modal-backdrop');
+      if (backdrop) backdrop.remove();
+    }
+  });
+</script>
 
 </body>
 </html>
