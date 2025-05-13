@@ -60,16 +60,16 @@
 
 % !!!!!! important guideline for authors !!!!!!
 
-% 1. Put all content in the main.tex. Do NOT use \input{} or \include{} commands to include other files.
+% 1. Put all content in the main.tex. \textcolor{red}{DO NOT} use \input{} or \include{} commands to include other files.
 % 2. All figures must be placed in the "figures" folder, no spaces in figures file names
-% 3. Do not rename folder or file names, to facilitate the copyediting automation process, including: "main.tex", "/figures" folder, "reference.bib"
+% 3. \textcolor{red}{DO not} rename folder or file names, to facilitate the copyediting automation process, including: "main.tex", "/figures" folder, "reference.bib"
 % 4. Use vanilla table and tabular environment, otherwise your tables will not be generated properly in web version
-% 5. Do not use subfloat package, otherwise your figures will not be generated properly in web version. Use subfigure package instead.
+% 5. \textcolor{red}{DO not} use subfloat package, otherwise your figures will not be generated properly in web version. Use subfigure package instead.
 
 
 \section{User guide for this template}
 
-Do NOT submit your paper containing latex error messages. If you see any error messages, please fix them before submission. Please read the following guidelines carefully.
+\textcolor{red}{DO NOT submit your paper containing latex error messages}. If you see any error messages, please fix them before submission. Please read the following guidelines carefully.
 
 The copy editor is Junzi alone for the moment, any time saved for him is time saved for you :).
 
@@ -77,10 +77,10 @@ The copy editor is Junzi alone for the moment, any time saved for him is time sa
 The title should be in Title Case. Keep it concise and informative, ideally within 12 words. Avoid abbreviations in the title unless they are widely recognized.
 
 \subsection{Single main file}
-Place all content in \texttt{main.tex}. Do NOT use \verb|\input{}| or \verb|\include{}| to add external \verb|.tex| files.
+\textcolor{red}{DO NOT use external .tex files}, like \verb|\input{}| or \verb|\include{}|. Place all content in \texttt{main.tex}. 
 
 \subsection{Keep the original file names}
-Do NOT rename \texttt{main.tex}, the \texttt{figures} folder, or \texttt{reference.bib}, all to ensure compatibility with the automated copyediting process.
+\textcolor{red}{DO NOT rename filenames} including \texttt{main.tex}, the \texttt{figures} folder, or \texttt{reference.bib}, all to ensure compatibility with the automated copyediting process.
 
 \subsection{References}
 Add your bibliography entries to \texttt{reference.bib} and cite them using \verb|\cite{}|. Here is an example of a citation on open data \cite{murray2008open}. Another example on diamond open access \cite{fuchs2013diamond}. Sine many of you are using the OpenSky data, here is another example \cite{schafer2014bringing}.
@@ -89,7 +89,7 @@ Add your bibliography entries to \texttt{reference.bib} and cite them using \ver
 Use footnotes sparingly. They should be used for additional information that is not essential to the main text. Use the \verb|\footnote{}| command to create footnotes.\footnote{This is an example footnote works.}
 
 \subsection{Tables}
-Use the standard \texttt{tabular} environment. Avoid custom or complex table packages to ensure compatibility for the web version. Table \ref{tb:example_table} shows an example.
+Use the standard \texttt{tabular} environment. \textcolor{red}{Avoid custom or complex table designed} to ensure compatibility for the web version. Table \ref{tb:example_table} shows an example that always works.
 
 \begin{table}[htbp!]
   \centering
@@ -110,7 +110,7 @@ Use the standard \texttt{tabular} environment. Avoid custom or complex table pac
 \end{table}
 
 \subsection{Figures}
-Store all figures in the \texttt{figures} folder. Use concise, space-free and lowercase filenames.
+Store all figures in the one \textbf{figures} folder. Use concise, space-free and lowercase filenames.
 
 Ensure that the figure is in a compatible format (.png or .pdf) and is appropriately sized (not too large or too small). Figure~\ref{fig:example} shows an example of how to include a figure. 
 
@@ -121,7 +121,7 @@ Ensure that the figure is in a compatible format (.png or .pdf) and is appropria
   \label{fig:example}
 \end{figure}
 
-If you need subfigures, do NOT use the \texttt{subfloat} package. You are recommended to use the \texttt{subfigure} package instead. Figure~\ref{fig:subfig_example} shows an example of how to use subfigures.
+If you need subfigures, \textcolor{red}{DO NOT use the \texttt{subfloat} package}. You are recommended to use the \texttt{subfigure} package instead. Figure~\ref{fig:subfig_example} shows an example of how to use subfigures.
 
 \begin{figure}[htbp!]
   \centering
@@ -193,13 +193,13 @@ When applicable, please specify the funding information for this research.
 
 % Data statement is mandatory for all papers
 \section*{Open data statement}
-Mandatory section! 
+\textcolor{red}{Mandatory section!}
 
 Include DOI and short description to supplementary data.
 
 % reproducibility statement is mandatory for all papers
 \section*{Reproducibility statement}
-Mandatory section!
+\textcolor{red}{Mandatory section!}
 
 Information on how to reproduce this research, including access to 1) source code related the research, 2) source code for the figures, 3) source code / data for the tables when applicable.
 
