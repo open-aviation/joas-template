@@ -19,20 +19,14 @@
 
 \reviewers{First Reviewer, Second Reviewer, Third Reviewer}
 
-
-% --- blew is the area for authors ---
-
-% remove the following two packages, and delete all \blindtext commands
-\usepackage[english]{babel} 
-\usepackage{blindtext}
-
-
 % specify the .bib file for references
 \addbibresource{reference.bib} 
 
 
-% Make sure your article tile is within 12 words
-\title{Using a concise title for your article}
+% --- blew is the area for authors ---
+
+% Title within 12 words
+\title{User Guide for Journal of Open Aviation Science Template}
 
 \author{First Author \orcid{0000-0000-0000-0000}}
 \affiliation{Institution-1, City, Country}
@@ -51,8 +45,8 @@
 
 % Important: don't over use abbreviations. Only use abbreviation if the term is used more than ten times throughout the paper. Otherwise, write them in full.
 \abbreviations{
-    JOAS: Journal of Open Aviation Science, 
-    ATM: Air Traffic Management
+    JOAS: Journal of Open Aviation Science, % remove this in your paper!
+    ATM: Air Traffic Management % remove this in your paper!
 }
 
 
@@ -63,46 +57,41 @@
 \end{abstract}
 
 
-\section{Introduction}
 
-\blindtext 
-open data in science \cite{murray2008open}. 
+% !!!!!! important guideline for authors !!!!!!
 
-
-\blindtext [2]
-
-
-\section{Method}
-
-\subsection{Method part 1}
-
-\blindtext The end result is in Figure \ref{fig:logo}.
-
-\begin{figure}[ht!]
-  \centering
-  \includegraphics[width=0.45\textwidth]{example-image}
-  \caption{An Example Figure}
-  \label{fig:logo}
-\end{figure}
-
-\blindtext\footnote{This is how a footnote works.}
-
-\subsection{Method part 2}
-
-\subsubsection{Method part 2-1}
-
-\blindtext Reference to Equation \ref{eq:cauchy_momentum}.
-
-\begin{equation} \label{eq:cauchy_momentum}
-\rho\frac{\mathrm{D} \mathbf{u}}{\mathrm{D} t} = - \nabla p + \nabla \cdot \boldsymbol \tau + \rho\,\mathbf{g}
-\end{equation}
+% 1. Put all content in the main.tex. Do NOT use \input{} or \include{} commands to include other files.
+% 2. All figures must be placed in the "figures" folder, no spaces in figures file names
+% 3. Do not rename folder or file names, to facilitate the copyediting automation process, including: "main.tex", "/figures" folder, "reference.bib"
+% 4. Use vanilla table and tabular environment, otherwise your tables will not be generated properly in web version
+% 5. Do not use subfloat package, otherwise your figures will not be generated properly in web version. Use subfigure package instead.
 
 
-\subsubsection{Method part 2-2}
+\section{User guide for this template}
 
-\blindtext Table \ref{tb:example_table} shows an example.
+Do NOT submit your paper containing latex error messages. If you see any error messages, please fix them before submission. Please read the following guidelines carefully.
 
-\begin{table}[H]
+The copy editor is Junzi alone for the moment, any time saved for him is time saved for you :).
+
+\subsection{Title}
+The title should be in Title Case. Keep it concise and informative, ideally within 12 words. Avoid abbreviations in the title unless they are widely recognized.
+
+\subsection{Single main file}
+Place all content in \texttt{main.tex}. Do NOT use \verb|\input{}| or \verb|\include{}| to add external \verb|.tex| files.
+
+\subsection{Keep the original file names}
+Do NOT rename \texttt{main.tex}, the \texttt{figures} folder, or \texttt{reference.bib}, all to ensure compatibility with the automated copyediting process.
+
+\subsection{References}
+Add your bibliography entries to \texttt{reference.bib} and cite them using \verb|\cite{}|. Here is an example of a citation on open data \cite{murray2008open}. Another example on diamond open access \cite{fuchs2013diamond}. Sine many of you are using the OpenSky data, here is another example \cite{schafer2014bringing}.
+
+\subsection{Footnotes}
+Use footnotes sparingly. They should be used for additional information that is not essential to the main text. Use the \verb|\footnote{}| command to create footnotes.\footnote{This is an example footnote works.}
+
+\subsection{Tables}
+Use the standard \texttt{tabular} environment. Avoid custom or complex table packages to ensure compatibility for the web version. Table \ref{tb:example_table} shows an example.
+
+\begin{table}[htbp!]
   \centering
   \small
   \caption{Example table}
@@ -120,26 +109,68 @@ open data in science \cite{murray2008open}.
   \end{tabular}
 \end{table}
 
-\blindtext
+\subsection{Figures}
+Store all figures in the \texttt{figures} folder. Use concise, space-free and lowercase filenames.
+
+Ensure that the figure is in a compatible format (.png or .pdf) and is appropriately sized (not too large or too small). Figure~\ref{fig:example} shows an example of how to include a figure. 
+
+\begin{figure}[htbp!]
+  \centering
+  \includegraphics[width=0.4\textwidth]{example-image}
+  \caption{An Example Figure}
+  \label{fig:example}
+\end{figure}
+
+If you need subfigures, do NOT use the \texttt{subfloat} package. You are recommended to use the \texttt{subfigure} package instead. Figure~\ref{fig:subfig_example} shows an example of how to use subfigures.
+
+\begin{figure}[htbp!]
+  \centering
+  \subfigure[First subfigure]{\includegraphics[width=0.3\textwidth]{example-image-a}}
+  \hspace{0.2cm}
+  \subfigure[Second subfigure]{\includegraphics[width=0.3\textwidth]{example-image-b}}
+  \caption{An Example of Subfigures using the subfigure package}
+  \label{fig:subfig_example}
+\end{figure}
+
+Attentiion: in your text, use \verb|Figure \ref{fig:example}|, NOT \verb|Fig. \ref{fig:example}|.
 
 
-\section{Discussions}
+\subsection{Equations}
+Use the \verb|equation| environment for numbered equations. You must avoid customized variable names. Otherwise, the HTML version will not be generated properly.
 
-\paragraph{Paragraph title} This is the paragraph with title if you want to use such function in the paper. \blindtext
+For example, Equation \ref{eq:cauchy_momentum} shows an example equation.
+
+\begin{equation} \label{eq:cauchy_momentum}
+\rho\frac{\mathrm{D} \mathbf{u}}{\mathrm{D} t} = - \nabla p + \nabla \cdot \boldsymbol \tau + \rho\,\mathbf{g}
+\end{equation}
+
+\subsection{Abbreviations}
+Use the \verb|\abbreviations{}| command to define abbreviations. Only use abbreviations if the term is used more than ten times throughout the paper. Otherwise, write them in full.
 
 
-\section{Conclusion}
+\section{Sections}
 
-\blindtext
+Organize your paper using standard sectioning commands (\verb|\section|, \verb|\subsection|, etc.).
 
+Some standard sections are:
+
+\begin{itemize}
+  \item Introduction
+  \item Methods
+  \item Results
+  \item Discussion
+  \item Conclusion
+\end{itemize}
+
+You can add or remove sections as needed.
+
+Use \verb|Appendix| for supplementary material. The appendix should be used for additional information that is not essential to the main text but may be useful for some readers. Remove this section if you do not have any supplementary material.
 
 \appendix
 
 \section{Supplementary figures}
-\blindtext
 
 \section{Supplementary tables}
-\blindtext
 
 
 \section*{Acknowledgement}
@@ -147,13 +178,13 @@ Include your acknowledgement in this section.
 
 % Author contributions (CRediT) are mandatory for all papers with more than one author
 \section*{Author contributions}
-  If the paper has more than one author, the CRediT section must be included. See example usage on \url{https://casrai.org/credit/}
+If the paper has more than one author, the CRediT section must be included. See example usage on \url{https://casrai.org/credit/}
 
-  \begin{itemize}
-    \item First Author: Conceptualization, Data Curation, Formal Analysis, Funding Acquisition, Investigation, Methodology, Project Administration, Resources, Software, Supervision, Validation, Visualization, Writing (Original Draft), Writing (Review and Editing)
-    \item Second Author: Data curation, Writing- Original draft
-    \item Third Author: Visualization, Investigation
-  \end{itemize}
+\begin{itemize}
+  \item First Author: Conceptualization, Data Curation, Formal Analysis, Funding Acquisition, Investigation, Methodology, Project Administration, Resources, Software, Supervision, Validation, Visualization, Writing (Original Draft), Writing (Review and Editing)
+  \item Second Author: Data curation, Writing- Original draft
+  \item Third Author: Visualization, Investigation
+\end{itemize}
 
 
 \section*{Funding statement}
@@ -162,10 +193,14 @@ When applicable, please specify the funding information for this research.
 
 % Data statement is mandatory for all papers
 \section*{Open data statement}
-DOI and short description to supplementary data.
+Mandatory section! 
+
+Include DOI and short description to supplementary data.
 
 % reproducibility statement is mandatory for all papers
 \section*{Reproducibility statement}
+Mandatory section!
+
 Information on how to reproduce this research, including access to 1) source code related the research, 2) source code for the figures, 3) source code / data for the tables when applicable.
 
 

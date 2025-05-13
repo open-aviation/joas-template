@@ -1372,6 +1372,8 @@
 \RequirePackage{enumitem}
 \setlist[itemize]{itemsep=0.5em}
 
+\RequirePackage{subfigure}
+
 
 \SectionNumbersOn
 
