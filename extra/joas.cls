@@ -676,8 +676,12 @@
         \ifx \cup@manuscript \cup@manuscript@poster
           \emph{(This poster paper is not peer reviewed.)} \\
         \else
+          \ifx \cup@manuscript \cup@manuscript@editorial
+          (Published: \cup@publd) \\
+          \else
           (Received: \cup@recvd; Revised: \cup@revd; Accepted: \cup@accptd; Published: \cup@publd) \\
           (Editor: \cup@editor; Reviewers: \cup@reviewers) \\
+          \fi
           \vspace*{\cup@space@post@date}%
         \fi
       \fi
@@ -1372,8 +1376,7 @@
 \RequirePackage{enumitem}
 \setlist[itemize]{itemsep=0.5em}
 
-\RequirePackage{subfigure}
-
+\RequirePackage{xurl}
 
 \SectionNumbersOn
 
