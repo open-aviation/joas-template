@@ -212,7 +212,7 @@
       font-size: 1.5em;
       margin-top: 1em;
     }
-    .paper {counter-reset: h1counter}
+    .paper {counter-reset: h1counter; overflow-x: auto; min-width: 0;}
     .paper h1 {counter-reset: h2counter}
     .paper h2 {counter-reset: h3counter}
     .paper h1:before {
@@ -227,6 +227,22 @@
       content: counter(h1counter) "." counter(h2counter) "." counter(h3counter) ".\0000a0\0000a0";
       counter-increment: h3counter;
     }
+    /* Algorithm pseudocode blocks */
+    .algorithm {
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 1em 1.5em;
+      margin: 1.5em 0;
+      background-color: #f8f9fa;
+      overflow-x: auto;
+      font-size: 90%;
+    }
+    .algorithmic p {
+      line-height: 2.2;
+      margin: 0.5em 0;
+      overflow-wrap: break-word;
+    }
+
     .paper figure img,
     .paper figure * img{
       width: auto;

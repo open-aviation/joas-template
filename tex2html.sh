@@ -1,4 +1,4 @@
-pandoc main.tex -t json | python extra/joas_filter.py | pandoc -f json  \
+pandoc main.tex -t json | uv run --with pandocfilters python extra/joas_filter.py | pandoc -f json  \
   --output build/html/main.html \
   --template extra/template.html5 \
   --css bootstrap.min.css \
