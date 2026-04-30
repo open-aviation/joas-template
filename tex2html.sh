@@ -1,4 +1,9 @@
-pandoc main.tex -t json | uv run --with pandocfilters python extra/joas_filter.py | pandoc -f json  \
+mkdir -p build/html
+
+# Pandoc does not extract images wrapped in \subfloat{...}; unwrap them for HTML only.
+perl -0pe 's/\\subfloat\[[^\]]*\]\{(\\includegraphics(?:\[[^\]]*\])?\{[^}]+\})\\label\{[^}]+\}\}/$1/g' main.tex > build/html/main-html.tex
+
+pandoc build/html/main-html.tex -t json | uv run --with pandocfilters python extra/joas_filter.py | pandoc -f json  \
   --output build/html/main.html \
   --template extra/template.html5 \
   --css bootstrap.min.css \
